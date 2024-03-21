@@ -22,7 +22,7 @@ if(!class_exists('cf7tel_tel_functions')) {
             add_action( 'admin_init', array( $this, 'settings_section' ), PHP_INT_MAX );
             add_action( 'admin_init', array( $this, 'save_form' ), PHP_INT_MAX );
             add_action( 'wpcf7_before_send_mail', array( $this, 'send' ), PHP_INT_MAX, 3 );
-            add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), PHP_INT_MAX, 1 );
+            add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), PHP_INT_MAX );
             add_action( 'wp_ajax_cf7tel_telegram', array( $this, 'ajax' ) );
         }
 
@@ -50,6 +50,13 @@ if(!class_exists('cf7tel_tel_functions')) {
                     'ph'		=> __( 'or define by CF7TEL_BOT_TOKEN constant', CF7TEL_TEXT_DOMAIN ),
                 )
             );
+
+            // add_settings_section(
+            //     'cf7tel_sections_create_token', 
+            //     __( 'How to configure telegram settings', CF7TEL_TEXT_DOMAIN ),
+            //     array( $this, 'how_to_create_bot_token' ),
+            //     'cf7tel_settings_page'
+            // );
         }
 
         /**
@@ -64,6 +71,31 @@ if(!class_exists('cf7tel_tel_functions')) {
                     echo '<input type="'. esc_attr( $data['type'] ) .'" ' . 'name="'. esc_attr( $data['name'] ) .'" ' . 'value="'. esc_attr( $data['value'] ) .'"' . 'class="large-text" ' . $disabled . $placeholder . '/>';
                     break;
             }
+        }
+
+        function how_to_create_bot_token() { ?>
+            <h3>How to connect telegram with contact form</h3>
+            <h4>Open Telegram and search for @BotFather:</h4>
+            <p>Open the Telegram app or go to the Telegram website. In the search bar, type "@BotFather" and select the official BotFather bot from the search results.</p>
+
+            <h4>Start a conversation with BotFather:</h4>
+            <p>Once you've found BotFather, start a conversation with it by clicking on the "Start" button or typing "/start" in the chat.</p>
+
+            <h4>Create a new bot:</h4>
+            <p>To create a new bot, type "/newbot" and follow the instructions provided by BotFather.</p>
+            <p>BotFather will ask you to choose a name for your bot. This is the name that will be displayed in chats.</p>
+            <p>After choosing a name, BotFather will ask you to choose a username for your bot. This username must be unique and end with "bot" (e.g., "@example_bot").</p>
+            <p>Once you've provided a username, BotFather will generate a token for your bot.</p>
+
+            <h4>Copy the bot token:</h4>
+            <p>BotFather will provide you with a token for your bot. This token is a long string of characters that serves as a unique identifier for your bot.</p>
+            <p>Copy the token and keep it secure. Do not share it with anyone else, as it provides access to your bot's functionality.</p>
+
+            <h4>Use the bot token in your telegram settings:</h4>
+            <p>Add Bot Token in settings. After that you need to have chat in Subscriber list. To add chat in list follow below given notes</p>
+            <p><strong>To add bot:</strong> send the <code>/cf7tel_start</code> comand to your bot</p>
+            <p><strong>Add group:</strong> add your bot to the group and send the <code>/cf7tel_start</code> comand to your group</p>
+            <?php
         }
 
         /**
@@ -81,12 +113,13 @@ if(!class_exists('cf7tel_tel_functions')) {
                     $this->view_full_list();
                     settings_errors(); 
                 ?>
-                <form method="post" action="admin.php?page=cf7tel_telegram">
+                <form method="post" action="admin.php?page=cf7tel_telegram" class="cf7tel-form">
                     <?php settings_fields( 'cf7tel_settings_page' ); ?>
                     <?php do_settings_sections( 'cf7tel_settings_page' ); ?> 
                     <input type="hidden" name="cf7tel_settings_form_action" value="save" />
-                    <p><?php echo __( 'To activate telegram notifications go to <code>Contact forms -> Edit form -> Telegram</code>. After that configure given settings in "Telegram" tab for telegram notification.', CF7TEL_TEXT_DOMAIN ); ?></p>
+                    <p><?php echo __( 'To activate telegram notifications approve at least one subscriber And go to <code>Contact forms -> Edit form -> Telegram tab</code>. Then configure given settings in "Telegram" tab for telegram notification.', CF7TEL_TEXT_DOMAIN ); ?></p>
                     <?php submit_button(); ?>
+                    <div class="cf7tel-how-to-connect-tel"><?php $this->how_to_create_bot_token(); ?></div>
                 </form>
             </div> 
             <?php
@@ -134,7 +167,7 @@ if(!class_exists('cf7tel_tel_functions')) {
                 ),
             );
             
-            if($hook == 'toplevel_page_wpcf7' || $hook == 'contact_page_cf7tel_telegram') {
+            if($hook == 'toplevel_page_wpcf7' || $hook == 'contact_page_wpcf7-new' || $hook == 'contact_page_cf7tel_telegram') {
                 wp_enqueue_style( 'cf7teltelegram-admin-styles', CF7TEL_PLUGIN_URL . '/telegram/assets/css/admin.css', array(), CF7TEL_PLUGIN_VERSION );
                 wp_enqueue_script( 'cf7teltelegram-admin', CF7TEL_PLUGIN_URL . '/telegram/assets/js/admin.js', array('jquery'), CF7TEL_PLUGIN_VERSION );
                 wp_localize_script( 'cf7teltelegram-admin', 'wpData', $localize_params );
@@ -229,16 +262,12 @@ if(!class_exists('cf7tel_tel_functions')) {
             return true;
         }
 
-        private function get_template( $name ){
+        private function get_template( $name ) {
             $t['f_item'] =
             '<div class="cf7tel_notice notice-%1$s is-dismissible" data-chat="%2$d" status="%1$s" >
                 <div class="info dashicons-before dashicons-%3$s">
-                    <span class="username">
-                        %4$s
-                    </span>
-                    <span class="nickname">
-                        %5$s
-                    </span>
+                    <span class="username"><strong>%4$s</strong></span>
+                    <span class="nickname">%5$s</span>
                     %6$s
                 </div>
                 <div class="buttons">
@@ -255,17 +284,18 @@ if(!class_exists('cf7tel_tel_functions')) {
          * Send telegram message if configuration matches
          */
         public function send( $cf, & $abort, $instance ){
-            $list = $this->get_chats();
-            if ( empty( $list ) ) return;
-            if ( $abort ) return;
-            if ( apply_filters( 'cf7tel_skip_tg', false, $cf, $instance ) ) return;
-            
-
             $form_id = $cf->id();
             $form_title = $cf->title();
+            
             $cf7tel_tel_option = get_option( 'cf7tel_connect_tel_' . $form_id , $default = array() );
+            $list = (isset($cf7tel_tel_option['cf7tel_form_chats']) && !empty($cf7tel_tel_option['cf7tel_form_chats'])) ? explode(",",$cf7tel_tel_option['cf7tel_form_chats']) : array();
+            $status = (isset($cf7tel_tel_option['cf7tel_status']) && !empty($cf7tel_tel_option['cf7tel_status'])) ? $cf7tel_tel_option['cf7tel_status'] : "";
+            
+            if ( empty( $status ) || empty( $list ) ) return;
+            if ( $abort ) return;
+            if ( apply_filters( 'cf7tel_skip_tg', false, $cf, $instance ) ) return;
 
-            if(isset($cf7tel_tel_option['cf7tel_status']) && !empty($cf7tel_tel_option['cf7tel_status']) && isset($cf7tel_tel_option['cf7tel_message_body']) && !empty($cf7tel_tel_option['cf7tel_message_body'])) {
+            if(isset($cf7tel_tel_option['cf7tel_message_body']) && !empty($cf7tel_tel_option['cf7tel_message_body'])) {
                 $telegram_msg_body = wp_unslash( $cf7tel_tel_option['cf7tel_message_body'] );
                 $data = $instance->get_posted_data();
         
@@ -279,8 +309,7 @@ if(!class_exists('cf7tel_tel_functions')) {
                     'b' => array(), 'strong' => array(), 'i' => array(), 'em' => array(), 'u' => array(), 'ins' => array(), 's' => array(), 'strike' => array(), 'del' => array(), 'code' => array(), 'pre' => array(),
                 ) );	
                 
-                foreach( $list as $id => $chat ) :
-                    $chat_id = is_numeric( $id ) ? $id : $chat['id'];
+                foreach( $list as $key => $chat_id ) :
                     if ( ! is_numeric( $chat_id ) ) continue;			
                     $msg_data = array(
                         'chat_id'					=> $chat_id,
@@ -292,8 +321,10 @@ if(!class_exists('cf7tel_tel_functions')) {
                     do_action( 'cf7tel_message_sent', $msg_data, $instance );
                 endforeach;
                 
+                
                 do_action( 'cf7tel_messages_sent', $list, $output, $mode, $instance );
             }
+            
         }
 
         /** Check entered bot */
@@ -366,7 +397,7 @@ if(!class_exists('cf7tel_tel_functions')) {
             foreach( $updates->result as $one ) :
                 $update_ids []= $one->update_id;
                 
-                if ( is_array( $one->message->entities ) ) :
+                if ( isset($one->message->entities) && is_array( $one->message->entities ) ) :
                     foreach( $one->message->entities as $ent ) :
                         $cmd = substr( $one->message->text, $ent->offset, $ent->length );
                         if ( 'bot_command' == $ent->type && '/' . $this->cmd === $cmd && empty( $this->chats[ $one->message->chat->id ] ) ) :
@@ -377,7 +408,7 @@ if(!class_exists('cf7tel_tel_functions')) {
                     endforeach;
                 endif;
             
-                if ( false === strpos( $one->message->text, 'cf7tel_start' ) ) continue;
+                if ( !isset($one->message->text) || isset($one->message->text) && false === strpos( $one->message->text, 'cf7tel_start' ) ) continue;
     
             endforeach;
             
