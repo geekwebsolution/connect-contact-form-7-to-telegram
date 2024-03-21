@@ -50,13 +50,6 @@ if(!class_exists('cf7tel_tel_functions')) {
                     'ph'		=> __( 'or define by CF7TEL_BOT_TOKEN constant', CF7TEL_TEXT_DOMAIN ),
                 )
             );
-
-            // add_settings_section(
-            //     'cf7tel_sections_create_token', 
-            //     __( 'How to configure telegram settings', CF7TEL_TEXT_DOMAIN ),
-            //     array( $this, 'how_to_create_bot_token' ),
-            //     'cf7tel_settings_page'
-            // );
         }
 
         /**
@@ -74,27 +67,27 @@ if(!class_exists('cf7tel_tel_functions')) {
         }
 
         function how_to_create_bot_token() { ?>
-            <h3>How to connect telegram with contact form</h3>
-            <h4>Open Telegram and search for @BotFather:</h4>
-            <p>Open the Telegram app or go to the Telegram website. In the search bar, type "@BotFather" and select the official BotFather bot from the search results.</p>
+            <h3><?php echo esc_html( 'How to connect telegram with contact form', CF7TEL_TEXT_DOMAIN ); ?></h3>
+            <h4><?php echo esc_html( 'Open Telegram and search for @BotFather:', CF7TEL_TEXT_DOMAIN ); ?></h4>
+            <p><?php echo esc_html( 'Open the Telegram app or go to the Telegram website. In the search bar, type "@BotFather" and select the official BotFather bot from the search results.', CF7TEL_TEXT_DOMAIN ); ?></p>
 
-            <h4>Start a conversation with BotFather:</h4>
-            <p>Once you've found BotFather, start a conversation with it by clicking on the "Start" button or typing "/start" in the chat.</p>
+            <h4><?php echo esc_html( 'Start a conversation with BotFather:', CF7TEL_TEXT_DOMAIN ); ?></h4>
+            <p><?php echo esc_html( 'Once you have found BotFather, start a conversation with it by clicking on the "Start" button or typing "/start" in the chat.', CF7TEL_TEXT_DOMAIN ); ?></p>
 
-            <h4>Create a new bot:</h4>
-            <p>To create a new bot, type "/newbot" and follow the instructions provided by BotFather.</p>
-            <p>BotFather will ask you to choose a name for your bot. This is the name that will be displayed in chats.</p>
-            <p>After choosing a name, BotFather will ask you to choose a username for your bot. This username must be unique and end with "bot" (e.g., "@example_bot").</p>
-            <p>Once you've provided a username, BotFather will generate a token for your bot.</p>
+            <h4><?php echo esc_html( 'Create a new bot:', CF7TEL_TEXT_DOMAIN ); ?></h4>
+            <p><?php echo esc_html( 'To create a new bot, type "/newbot" and follow the instructions provided by BotFather.', CF7TEL_TEXT_DOMAIN ); ?></p>
+            <p><?php echo esc_html( 'BotFather will ask you to choose a name for your bot. This is the name that will be displayed in chats.', CF7TEL_TEXT_DOMAIN ); ?></p>
+            <p><?php echo esc_html( 'After choosing a name, BotFather will ask you to choose a username for your bot. This username must be unique and end with "bot" (e.g., "@example_bot").', CF7TEL_TEXT_DOMAIN ); ?></p>
+            <p><?php echo esc_html( 'Once you have provided a username, BotFather will generate a token for your bot.', CF7TEL_TEXT_DOMAIN ); ?></p>
 
-            <h4>Copy the bot token:</h4>
-            <p>BotFather will provide you with a token for your bot. This token is a long string of characters that serves as a unique identifier for your bot.</p>
-            <p>Copy the token and keep it secure. Do not share it with anyone else, as it provides access to your bot's functionality.</p>
+            <h4><?php echo esc_html( 'Copy the bot token:', CF7TEL_TEXT_DOMAIN ); ?></h4>
+            <p><?php echo esc_html( 'BotFather will provide you with a token for your bot. This token is a long string of characters that serves as a unique identifier for your bot.', CF7TEL_TEXT_DOMAIN ); ?></p>
+            <p><?php echo esc_html( "Copy the token and keep it secure. Do not share it with anyone else, as it provides access to your bot's functionality.", CF7TEL_TEXT_DOMAIN ); ?></p>
 
-            <h4>Use the bot token in your telegram settings:</h4>
-            <p>Add Bot Token in settings. After that you need to have chat in Subscriber list. To add chat in list follow below given notes</p>
+            <h4><?php echo esc_html( 'Use the bot token in your telegram settings:', CF7TEL_TEXT_DOMAIN ); ?></h4>
+            <p><?php echo esc_html( 'Add Bot Token in settings. After that you need to have chat in Subscriber list. To add chat in list follow below given notes', CF7TEL_TEXT_DOMAIN ); ?></p>
             <p><strong>To add bot:</strong> send the <code>/cf7tel_start</code> comand to your bot</p>
-            <p><strong>Add group:</strong> add your bot to the group and send the <code>/cf7tel_start</code> comand to your group</p>
+            <p><strong>Add group:</strong> <?php echo esc_html( 'add your bot to the group and send the', CF7TEL_TEXT_DOMAIN ); ?> <code>/cf7tel_start</code> comand to your group</p>
             <?php
         }
 
