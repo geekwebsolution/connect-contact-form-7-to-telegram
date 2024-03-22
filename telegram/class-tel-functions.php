@@ -17,12 +17,12 @@ if(!class_exists('cf7tel_tel_functions')) {
             $this->load_chats();
             
             add_action( 'admin_menu', array( $this, 'admin_menu_page' ) );
-            add_action( 'current_screen', array( $this, 'current_screen' ), PHP_INT_MAX );
-            add_action( 'admin_init', array( $this, 'settings_section' ), PHP_INT_MAX );
-            add_action( 'admin_init', array( $this, 'save_form' ), PHP_INT_MAX );
-            add_action( 'cf7tel_telegram_settings', array( $this, 'check_bot_updates' ), PHP_INT_MAX );
-            add_action( 'wpcf7_before_send_mail', array( $this, 'send' ), PHP_INT_MAX, 3 );
-            add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), PHP_INT_MAX );
+            add_action( 'current_screen', array( $this, 'current_screen' ), 999 );
+            add_action( 'admin_init', array( $this, 'save_form' ), 50 );
+            add_action( 'admin_init', array( $this, 'settings_section' ), 999 );
+            add_action( 'cf7tel_telegram_settings', array( $this, 'check_bot_updates' ), 999 );
+            add_action( 'wpcf7_before_send_mail', array( $this, 'send' ), 99999, 3 );
+            add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
             add_action( 'wp_ajax_cf7tel_telegram', array( $this, 'ajax' ) );
         }
 
