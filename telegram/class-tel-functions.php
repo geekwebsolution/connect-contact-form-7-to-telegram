@@ -18,9 +18,9 @@ if(!class_exists('cf7tel_tel_functions')) {
             
             add_action( 'admin_menu', array( $this, 'admin_menu_page' ) );
             add_action( 'current_screen', array( $this, 'current_screen' ), PHP_INT_MAX );
-            add_action( 'cf7tel_telegram_settings', array( $this, 'check_bot_updates' ), PHP_INT_MAX );
             add_action( 'admin_init', array( $this, 'settings_section' ), PHP_INT_MAX );
             add_action( 'admin_init', array( $this, 'save_form' ), PHP_INT_MAX );
+            add_action( 'cf7tel_telegram_settings', array( $this, 'check_bot_updates' ), PHP_INT_MAX );
             add_action( 'wpcf7_before_send_mail', array( $this, 'send' ), PHP_INT_MAX, 3 );
             add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), PHP_INT_MAX );
             add_action( 'wp_ajax_cf7tel_telegram', array( $this, 'ajax' ) );
@@ -279,6 +279,7 @@ if(!class_exists('cf7tel_tel_functions')) {
         public function send( $cf, & $abort, $instance ){
             $form_id = $cf->id();
             $form_title = $cf->title();
+            $active_chats = $this->get_chats();
             
             $cf7tel_tel_option = get_option( 'cf7tel_connect_tel_' . $form_id , $default = array() );
             $list = (isset($cf7tel_tel_option['cf7tel_form_chats']) && !empty($cf7tel_tel_option['cf7tel_form_chats'])) ? explode(",",$cf7tel_tel_option['cf7tel_form_chats']) : array();
@@ -303,6 +304,7 @@ if(!class_exists('cf7tel_tel_functions')) {
                 ) );	
                 
                 foreach( $list as $key => $chat_id ) :
+                    if( !array_key_exists( $chat_id, $active_chats ) )  continue;
                     if ( ! is_numeric( $chat_id ) ) continue;			
                     $msg_data = array(
                         'chat_id'					=> $chat_id,
