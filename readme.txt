@@ -47,7 +47,7 @@ Go to Admin Dashboard –> Contact Forms –> Edit contact form –> Go to Whats
 
 = How to create the Telegram-Bot? =
 
-It is very simple. Please, follow to  [official documentation](https://core.telegram.org/bots#3-how-do-i-create-a-bot "Telegram docs").
+It is very simple. Please, follow to  [official documentation](https://core.telegram.org/bots#how-do-i-create-a-bot "Telegram docs").
 
 = What is Telegram Chat ID & how to get it? =
 
