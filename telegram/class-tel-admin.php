@@ -23,10 +23,15 @@ if (!class_exists('cf7tel_connect_tel_settings')) {
          */
         public function connect_tel_settings_callback($post)
         {
+            $cf7cw_functions = new cf7tel_tel_functions();
+            $approved_chats = $cf7cw_functions->get_chats();
+
             $cf7tel_tel_option_nonce = wp_create_nonce('cf7tel_tel_option_nonce');
             $form_id = $post->id();
             $option = get_option('cf7tel_connect_tel_' . $form_id, $default = array());
-            $cf7tel_message_body = isset($option['cf7tel_message_body']) ? htmlentities($option['cf7tel_message_body']): cf7tel_connect_tel_settings::connect_tel_message_body(); ?>
+            $cf7tel_message_body = isset($option['cf7tel_message_body']) ? htmlentities($option['cf7tel_message_body']): cf7tel_connect_tel_settings::connect_tel_message_body();
+            $cf7_active_chats = (isset($option['cf7tel_form_chats']) && !empty($option['cf7tel_form_chats'])) ? explode(",",$option['cf7tel_form_chats']) : array();
+            $cf7tel_status = (isset($option['cf7tel_status']) && $option['cf7tel_status'] == 'on' && !empty($approved_chats) && !empty($cf7_active_chats)) ? 'checked' : ''; ?>
             
             <h2><?php esc_html_e('Telegram', CF7TEL_TEXT_DOMAIN); ?></h2>
             <legend>
@@ -41,10 +46,37 @@ if (!class_exists('cf7tel_connect_tel_settings')) {
                         </th>
                         <td>
                             <label class="cf7tel-switch">
-                                <input type="checkbox" class="cf7tel-checkbox" name="cf7tel-tel-status" value="on" <?php if (isset($option['cf7tel_status']) && $option['cf7tel_status'] == 'on') esc_attr_e('checked'); ?>>
+                                <input type="checkbox" class="cf7tel-checkbox" name="cf7tel-tel-status" value="on" <?php esc_attr_e($cf7tel_status); ?>>
                                 <span class="cf7tel-slider cf7tel-round"></span>
                             </label>
                             <p><?php esc_html_e('Enable to connect telegram for this contact form.', CF7TEL_TEXT_DOMAIN); ?></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <label><?php esc_html_e('Select Chats', CF7TEL_TEXT_DOMAIN); ?></label>
+                        </th>
+                        <td>
+                            <?php
+                            if( isset($approved_chats) && !empty($approved_chats) ) {
+                                
+                                foreach( $approved_chats as $key => $chat ) {
+                                    $first_name = isset($chat['first_name']) ? $chat['first_name'] : '';
+                                    $last_name = isset($chat['last_name']) ? $chat['last_name'] : '';
+                                    $fullname = (!empty($first_name) && !empty($last_name)) ? $first_name .' '. $last_name : $first_name . $last_name; ?>
+
+                                    <input type="checkbox" id="<?php esc_attr_e( $chat['id'] ); ?>" name="cf7tel_form_chats[]" value="<?php esc_attr_e( $chat['id'] ); ?>" <?php esc_attr_e( in_array( $chat['id'], $cf7_active_chats ) ? 'checked' : '' ); ?>>
+                                    <label for="<?php esc_attr_e( $chat['id'] ); ?>"><?php esc_html_e( implode( " ", array( empty( $str = trim( $chat['id'] > 0 ? $fullname : $chat['title'] ) ) ? "[{$chat['id']}]" : $str, empty( $chat['username'] ) ? '' : '@'. $chat['username'], isset( $chat['date'] ) ? wp_date( 'j F Y H:i:s', $chat['date'] ) : '' ) ) ); ?></label><br>
+                                    
+                                    <p><?php esc_html_e('Select any chats to send telegram messages.', CF7TEL_TEXT_DOMAIN); ?></p>
+                                    <?php
+                                }
+                            }else{ ?>
+                                    <p><?php echo esc_html('Please approve at least one chat in Subscribers list. To check subscriber list go to ', CF7TEL_TEXT_DOMAIN); ?><a href="<?php echo esc_url( admin_url('admin.php?page=cf7tel_telegram') ) ?>" title="CF7 Telegram Settings">CF7 Telegram Settings</a>.</p>
+                                <?php
+                            }
+                            ?>
+                            
                         </td>
                     </tr>
                     <tr>
@@ -54,19 +86,6 @@ if (!class_exists('cf7tel_connect_tel_settings')) {
                         <td>
                             <textarea id="cf7tel_message_body" name="cf7tel-tel-message-body" cols="100" rows="18" class="large-text code"><?php echo esc_html(wp_unslash($cf7tel_message_body)); ?></textarea>
                             <p><?php esc_html_e('Note:', CF7TEL_TEXT_DOMAIN); ?> <i><?php esc_html_e('You can customize above telegram message body.', CF7TEL_TEXT_DOMAIN); ?></i></p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <label><?php esc_html_e('Disable mail sending', CF7TEL_TEXT_DOMAIN); ?></label>
-                        </th>
-                        <td>
-                            <label class="cf7tel-switch">
-                                <input type="checkbox" class="cf7tel-checkbox" name="cf7tel-disable-mail-sending" value="on" disabled>
-                                <span class="cf7tel-slider cf7tel-round cf7tel-disable-mail"></span>
-                                <a href="<?php echo CF7TEL_PRO_PLUGIN_LINK; ?>" target="_blank" class="cf7tel-pro-btn" title="Upgrade to Pro">Pro</a>
-                            </label>
-                            <p><?php esc_html_e('Enable to stop mail from this contact form.', CF7TEL_TEXT_DOMAIN); ?></p>
                         </td>
                     </tr>
                     <div class="cf7tel-hidden-input">
@@ -83,11 +102,14 @@ if (!class_exists('cf7tel_connect_tel_settings')) {
             $form_title = $contact_form->title();
             $cf7tel_tel_wpnonce = sanitize_text_field($_POST['cf7tel-tel-nonce']);
 
-            $cf7tel_status = $cf7tel_message_body = "";
-            if (isset($_POST['cf7tel-tel-status']))  $cf7tel_status = sanitize_text_field($_POST['cf7tel-tel-status']);
+            $cf7tel_status = $cf7tel_message_body = $cf7tel_form_chats = "";
+            if (isset($_POST['cf7tel-tel-status']))       $cf7tel_status = sanitize_text_field($_POST['cf7tel-tel-status']);
             if (isset($_POST['cf7tel-tel-message-body'])) $cf7tel_message_body = html_entity_decode($_POST['cf7tel-tel-message-body']);
+            if(isset($_POST['cf7tel_form_chats']) && !empty($_POST['cf7tel_form_chats']))        $cf7tel_form_chats   = sanitize_text_field( implode(",",$_POST['cf7tel_form_chats']) );
+
             $cf7tel['form_id'] = $form_id;
             $cf7tel['form_title'] = $form_title;
+            $cf7tel['cf7tel_form_chats'] = $cf7tel_form_chats;
             $cf7tel['cf7tel_status'] = $cf7tel_status;
             $cf7tel['cf7tel_message_body'] = $cf7tel_message_body;
 

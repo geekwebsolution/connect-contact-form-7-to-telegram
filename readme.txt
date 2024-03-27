@@ -3,9 +3,9 @@ Contributors: rajkakadiya, rvadhel
 Donate link: https://paypal.me/rvadhel
 Tags: telegram, contact form 7, click to chat, telegram chat, telegram support
 Requires PHP: 7.4
-Requires at least: 6.4
-Tested up to: 6.4.3
-Stable tag: 1.0
+Requires at least: 6.3
+Tested up to: 6.4
+Stable tag: 1.0.0
 License: GPLv2 or later
 
 Connect Contact Form 7 to Telegram is a Telegram notification plugin for WordPress that makes it really simple to send your Contact Form 7 forms directly to your Telegram account.
@@ -47,7 +47,7 @@ Go to Admin Dashboard –> Contact Forms –> Edit contact form –> Go to Whats
 
 = How to create the Telegram-Bot? =
 
-It is very simple. Please, follow to  [official documentation](https://core.telegram.org/bots#3-how-do-i-create-a-bot "Telegram docs").
+It is very simple. Please, follow to  [official documentation](https://core.telegram.org/bots#how-do-i-create-a-bot "Telegram docs").
 
 = What is Telegram Chat ID & how to get it? =
 
@@ -70,5 +70,5 @@ After active plugin configure telegram account and whatsapp account configuratio
 
 == Changelog ==
  
-= 1.0 =
+= 1.0.0 =
  Initial release

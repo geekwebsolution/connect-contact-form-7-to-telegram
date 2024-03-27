@@ -1,74 +1,89 @@
 .cf7tel_check_bot .status:before {
-	content: ' ';
-	width: 8px;
-	height: 8px;
-	display: inline-block;
-	border-radius: 50%;
-	margin-right: 8px;
-}
-.cf7tel_check_bot.online .status:before{
-	background: #3278f7;
-	box-shadow: 0 0 2px #445bff;
-}
-.cf7tel_check_bot.failed .status:before{
-	background: red;
-	box-shadow: 0 0 2px red;
+    content: ' ';
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 8px;
 }
 
-.cf7tel_notice{
+.cf7tel_check_bot.online .status:before {
+    background: #01a934;
+    box-shadow: 0 0 2px #01a934;
+}
+
+.cf7tel_check_bot.failed .status:before {
+    background: red;
+    box-shadow: 0 0 2px red;
+}
+
+.cf7tel_notice {
     background: #fff;
     border: 1px solid #ccd0d4;
     border-left-width: 4px;
-    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
     margin: 5px 0px 2px;
     padding: 8px 12px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     max-width: 750px;
-    height: 30px;
+    min-height: 40px;
+    border-radius: 8px;
 }
-.cf7tel_notice[status="pending"]{
+
+.cf7tel_notice[status="pending"] {
     border-left-color: #f90;
 }
-.cf7tel_notice[status="active"]{
+
+.cf7tel_notice[status="active"] {
     border-left-color: #01a934;
 }
-.cf7tel_notice[status="deleted"]{
+
+.cf7tel_notice[status="deleted"] {
     opacity: .4;
 }
 
-.cf7tel_notice .nickname{
+.cf7tel_notice .nickname {
     font-family: monospace;
     color: #ccc;
 }
-.cf7tel_notice .buttons a{
+
+.cf7tel_notice .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.cf7tel_notice .buttons a {
     cursor: pointer;
     text-transform: uppercase;
-    margin: 0px 10px;
+    margin: 0;
     display: inline-block;
 }
 
-.cf7tel_notice .buttons .approve{
+.cf7tel_notice .buttons .approve {
     color: #01a934;
 }
-.cf7tel_notice .buttons .pause{
+
+.cf7tel_notice .buttons .pause {
     color: #f90;
 }
-.cf7tel_notice .buttons .refuse{
+
+.cf7tel_notice .buttons .refuse {
     color: #F00;
 }
 
-.cf7tel_notice[status="pending"] .buttons .pause{
-	display : none;
+.cf7tel_notice[status="pending"] .buttons .pause {
+    display: none;
 }
 
-.cf7tel_notice[status="active"] .buttons .approve{
-	display : none;
+.cf7tel_notice[status="active"] .buttons .approve {
+    display: none;
 }
 
-.cf7tel_notice[status="deleted"] .buttons{
-	display : none;
+.cf7tel_notice[status="deleted"] .buttons {
+    display: none;
 }
 
 #connect-telegram span.mailtag {
@@ -77,4 +92,167 @@
     padding: 1px 2px;
     cursor: pointer;
     color: #000000f2;
-  }
+}
+
+/** Contact form telegram tab CSS start */
+.cf7tel-switch {
+    cursor: pointer;
+}
+
+.cf7tel-switch {
+    position: relative;
+    display: inline-block;
+    width: 54px;
+    height: 22px;
+}
+
+.cf7tel-switch input[type="checkbox"] {
+    display: none;
+}
+
+.cf7tel-switch input:checked+.cf7tel-slider {
+    background-color: #6659bf;
+}
+
+.cf7tel-slider {
+    border-radius: 20px;
+    box-shadow: 2px 2px 30px rgb(0 0 0 / 20%);
+}
+
+.cf7tel-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+input.cf7tel-checkbox:checked+.cf7tel-slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(36px);
+}
+
+.cf7tel-slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 0;
+    bottom: 0px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+#contact-form-editor .cf7tel-sec .form-table th {
+    width: 125px;
+}
+
+#connect-telegram span.mailtag {
+    display: inline-block;
+    margin: 0 0 0 4px;
+    padding: 1px 2px;
+    cursor: pointer;
+    color: #000000f2;
+}
+
+#connect-telegram td p {
+    padding-top: 9px;
+    line-height: 8px;
+    font-family: Consolas, Monaco, monospace;
+}
+
+.cf7tel-form .cf7tel-how-to-connect-tel p {
+    font-size: 12px;
+    margin: 5px 0;
+}
+
+.cf7tel_notice .buttons a {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 1.5;
+    transition: 0.3s;
+}
+
+.cf7tel_notice .buttons a.approve {
+    background: #01a934;
+    color: #fff;
+}
+
+.cf7tel_notice .buttons a:hover {
+    background: color-mix(in srgb, #01a934 85%, black);
+    color: #ffffff;
+}
+
+.cf7tel_notice .buttons a.pause {
+    background: #f90;
+    color: #ffffff;
+}
+
+.cf7tel_notice .buttons a.pause:hover {
+    background: color-mix(in srgb, #f90 85%, black);
+    color: #ffffff;
+}
+
+.cf7tel_notice .buttons a.refuse {
+    background: #F00;
+    color: #ffffff;
+}
+
+.cf7tel_notice .buttons a.refuse:hover {
+    background: color-mix(in srgb, #F00 85%, black);
+}
+
+.cf7tel-how-to-connect-tel {
+    padding: 20px;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 10px;
+    background: #ffffff;
+    margin-bottom: 30px;
+}
+
+.cf7tel-how-to-connect-tel:last-child {
+    margin-bottom: 0;
+}
+
+.cf7tel-how-to-connect-tel h3:first-child, .cf7tel-how-to-connect-tel h4:first-child {
+    margin-top: 0;
+}
+
+.contact_page_cf7tel_telegram .wrap h1 {
+    font-weight: 600;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.contact_page_cf7tel_telegram .form-table th {
+    width: 250px;
+}
+
+.cf7tel-form {
+    margin-top: 40px;
+}
+
+.cf7tel-form h2 {
+    margin: 0;
+}
+
+.cf7tel-steps {
+    margin-top: 30px;
+}
+
+.cf7tel-steps h4 {
+    margin-bottom: 10px;
+}
+
+.cf7tel-steps p {
+    margin: 0 0 10px;
+}
