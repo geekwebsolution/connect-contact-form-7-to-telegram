@@ -29,7 +29,8 @@ if (!class_exists('cf7tel_connect_tel_settings')) {
             $cf7tel_tel_option_nonce = wp_create_nonce('cf7tel_tel_option_nonce');
             $form_id = $post->id();
             $option = get_option('cf7tel_connect_tel_' . $form_id, $default = array());
-            $cf7tel_message_body = isset($option['cf7tel_message_body']) ? htmlentities($option['cf7tel_message_body']): cf7tel_connect_tel_settings::connect_tel_message_body(); ?>
+            $cf7tel_message_body = isset($option['cf7tel_message_body']) ? htmlentities($option['cf7tel_message_body']): cf7tel_connect_tel_settings::connect_tel_message_body();
+            $cf7tel_status = (isset($option['cf7tel_status']) && $option['cf7tel_status'] == 'on' && !empty($approved_chats)) ? 'checked' : ''; ?>
             
             <h2><?php esc_html_e('Telegram', CF7TEL_TEXT_DOMAIN); ?></h2>
             <legend>
@@ -44,7 +45,7 @@ if (!class_exists('cf7tel_connect_tel_settings')) {
                         </th>
                         <td>
                             <label class="cf7tel-switch">
-                                <input type="checkbox" class="cf7tel-checkbox" name="cf7tel-tel-status" value="on" <?php if (isset($option['cf7tel_status']) && $option['cf7tel_status'] == 'on') esc_attr_e('checked'); ?>>
+                                <input type="checkbox" class="cf7tel-checkbox" name="cf7tel-tel-status" value="on" <?php esc_attr_e($cf7tel_status); ?>>
                                 <span class="cf7tel-slider cf7tel-round"></span>
                             </label>
                             <p><?php esc_html_e('Enable to connect telegram for this contact form.', CF7TEL_TEXT_DOMAIN); ?></p>
@@ -70,7 +71,7 @@ if (!class_exists('cf7tel_connect_tel_settings')) {
                                     <?php
                                 }
                             }else{ ?>
-                                    <p><?php echo esc_html('Please approve at least one chat in Subscribers list. To check subscriber list go to .', CF7TEL_TEXT_DOMAIN); ?><a href="<?php echo esc_url( admin_url('admin.php?page=cf7tel_telegram') ) ?>" title="CF7 Telegram Settings">CF7 Telegram Settings</a></p>
+                                    <p><?php echo esc_html('Please approve at least one chat in Subscribers list. To check subscriber list go to ', CF7TEL_TEXT_DOMAIN); ?><a href="<?php echo esc_url( admin_url('admin.php?page=cf7tel_telegram') ) ?>" title="CF7 Telegram Settings">CF7 Telegram Settings</a>.</p>
                                 <?php
                             }
                             ?>

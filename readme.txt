@@ -3,9 +3,9 @@ Contributors: rajkakadiya, rvadhel
 Donate link: https://paypal.me/rvadhel
 Tags: telegram, contact form 7, click to chat, telegram chat, telegram support
 Requires PHP: 7.4
-Requires at least: 6.4
-Tested up to: 6.4.3
-Stable tag: 1.0
+Requires at least: 6.3
+Tested up to: 6.4
+Stable tag: 1.0.0
 License: GPLv2 or later
 
 Connect Contact Form 7 to Telegram is a Telegram notification plugin for WordPress that makes it really simple to send your Contact Form 7 forms directly to your Telegram account.
@@ -70,5 +70,5 @@ After active plugin configure telegram account and whatsapp account configuratio
 
 == Changelog ==
  
-= 1.0 =
+= 1.0.0 =
  Initial release

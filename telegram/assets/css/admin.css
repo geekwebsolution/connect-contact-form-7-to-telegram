@@ -232,3 +232,27 @@ input.cf7tel-checkbox:checked+.cf7tel-slider:before {
     margin-bottom: 15px;
     margin-top: 15px;
 }
+
+.contact_page_cf7tel_telegram .form-table th {
+    width: 250px;
+}
+
+.cf7tel-form {
+    margin-top: 40px;
+}
+
+.cf7tel-form h2 {
+    margin: 0;
+}
+
+.cf7tel-steps {
+    margin-top: 30px;
+}
+
+.cf7tel-steps h4 {
+    margin-bottom: 10px;
+}
+
+.cf7tel-steps p {
+    margin: 0 0 10px;
+}
