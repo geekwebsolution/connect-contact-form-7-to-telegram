@@ -10,7 +10,7 @@ Text Domain : connect-contact-form-7-to-telegram
 
 if (!defined('ABSPATH')) exit;
 
-define('CF7TEL_PLUGIN_VERSION', 1.0.0);
+define('CF7TEL_PLUGIN_VERSION', '1.0.0');
 define('CF7TEL_TEXT_DOMAIN', 'connect-contact-form-7-to-telegram');
 define('CF7TEL_PRO_PLUGIN_LINK', 'https://geekcodelab.com/wordpress-plugins/connect-contact-form-7-to-telegram-pro/');
 
