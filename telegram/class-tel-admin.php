@@ -30,7 +30,8 @@ if (!class_exists('cf7tel_connect_tel_settings')) {
             $form_id = $post->id();
             $option = get_option('cf7tel_connect_tel_' . $form_id, $default = array());
             $cf7tel_message_body = isset($option['cf7tel_message_body']) ? htmlentities($option['cf7tel_message_body']): cf7tel_connect_tel_settings::connect_tel_message_body();
-            $cf7tel_status = (isset($option['cf7tel_status']) && $option['cf7tel_status'] == 'on' && !empty($approved_chats)) ? 'checked' : ''; ?>
+            $cf7_active_chats = (isset($option['cf7tel_form_chats']) && !empty($option['cf7tel_form_chats'])) ? explode(",",$option['cf7tel_form_chats']) : array();
+            $cf7tel_status = (isset($option['cf7tel_status']) && $option['cf7tel_status'] == 'on' && !empty($approved_chats) && !empty($cf7_active_chats)) ? 'checked' : ''; ?>
             
             <h2><?php esc_html_e('Telegram', CF7TEL_TEXT_DOMAIN); ?></h2>
             <legend>
@@ -58,7 +59,7 @@ if (!class_exists('cf7tel_connect_tel_settings')) {
                         <td>
                             <?php
                             if( isset($approved_chats) && !empty($approved_chats) ) {
-                                $cf7_active_chats = (isset($option['cf7tel_form_chats']) && !empty($option['cf7tel_form_chats'])) ? explode(",",$option['cf7tel_form_chats']) : array();
+                                
                                 foreach( $approved_chats as $key => $chat ) {
                                     $first_name = isset($chat['first_name']) ? $chat['first_name'] : '';
                                     $last_name = isset($chat['last_name']) ? $chat['last_name'] : '';
