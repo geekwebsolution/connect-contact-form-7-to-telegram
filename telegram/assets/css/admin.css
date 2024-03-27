@@ -8,8 +8,8 @@
 }
 
 .cf7tel_check_bot.online .status:before {
-    background: #3278f7;
-    box-shadow: 0 0 2px #445bff;
+    background: #01a934;
+    box-shadow: 0 0 2px #01a934;
 }
 
 .cf7tel_check_bot.failed .status:before {
@@ -28,7 +28,8 @@
     align-items: center;
     justify-content: space-between;
     max-width: 750px;
-    height: 40px;
+    min-height: 40px;
+    border-radius: 8px;
 }
 
 .cf7tel_notice[status="pending"] {
@@ -48,10 +49,16 @@
     color: #ccc;
 }
 
+.cf7tel_notice .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
 .cf7tel_notice .buttons a {
     cursor: pointer;
     text-transform: uppercase;
-    margin: 0px 10px;
+    margin: 0;
     display: inline-block;
 }
 
@@ -104,7 +111,7 @@
 }
 
 .cf7tel-switch input:checked+.cf7tel-slider {
-    background-color: #2196f3;
+    background-color: #6659bf;
 }
 
 .cf7tel-slider {
@@ -164,4 +171,64 @@ input.cf7tel-checkbox:checked+.cf7tel-slider:before {
 .cf7tel-form .cf7tel-how-to-connect-tel p {
     font-size: 12px;
     margin: 5px 0;
+}
+
+.cf7tel_notice .buttons a {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 1.5;
+    transition: 0.3s;
+}
+
+.cf7tel_notice .buttons a.approve {
+    background: #01a934;
+    color: #fff;
+}
+
+.cf7tel_notice .buttons a:hover {
+    background: color-mix(in srgb, #01a934 85%, black);
+    color: #ffffff;
+}
+
+.cf7tel_notice .buttons a.pause {
+    background: #f90;
+    color: #ffffff;
+}
+
+.cf7tel_notice .buttons a.pause:hover {
+    background: color-mix(in srgb, #f90 85%, black);
+    color: #ffffff;
+}
+
+.cf7tel_notice .buttons a.refuse {
+    background: #F00;
+    color: #ffffff;
+}
+
+.cf7tel_notice .buttons a.refuse:hover {
+    background: color-mix(in srgb, #F00 85%, black);
+}
+
+.cf7tel-how-to-connect-tel {
+    padding: 20px;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 10px;
+    background: #ffffff;
+    margin-bottom: 30px;
+}
+
+.cf7tel-how-to-connect-tel:last-child {
+    margin-bottom: 0;
+}
+
+.cf7tel-how-to-connect-tel h3:first-child, .cf7tel-how-to-connect-tel h4:first-child {
+    margin-top: 0;
+}
+
+.contact_page_cf7tel_telegram .wrap h1 {
+    font-weight: 600;
+    margin-bottom: 15px;
+    margin-top: 15px;
 }

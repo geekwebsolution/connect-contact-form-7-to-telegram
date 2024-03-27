@@ -68,23 +68,23 @@ if(!class_exists('cf7tel_tel_functions')) {
 
         function how_to_create_bot_token() { ?>
             <h3><?php echo esc_html( 'How to connect telegram with contact form', CF7TEL_TEXT_DOMAIN ); ?></h3>
-            <h4><?php echo esc_html( 'Open Telegram and search for @BotFather:', CF7TEL_TEXT_DOMAIN ); ?></h4>
+            <h4><?php echo esc_html( '1. Open Telegram and search for @BotFather:', CF7TEL_TEXT_DOMAIN ); ?></h4>
             <p><?php echo esc_html( 'Open the Telegram app or go to the Telegram website. In the search bar, type "@BotFather" and select the official BotFather bot from the search results.', CF7TEL_TEXT_DOMAIN ); ?></p>
 
-            <h4><?php echo esc_html( 'Start a conversation with BotFather:', CF7TEL_TEXT_DOMAIN ); ?></h4>
+            <h4><?php echo esc_html( '2. Start a conversation with BotFather:', CF7TEL_TEXT_DOMAIN ); ?></h4>
             <p><?php echo esc_html( 'Once you have found BotFather, start a conversation with it by clicking on the "Start" button or typing "/start" in the chat.', CF7TEL_TEXT_DOMAIN ); ?></p>
 
-            <h4><?php echo esc_html( 'Create a new bot:', CF7TEL_TEXT_DOMAIN ); ?></h4>
+            <h4><?php echo esc_html( '3. Create a new bot:', CF7TEL_TEXT_DOMAIN ); ?></h4>
             <p><?php echo esc_html( 'To create a new bot, type "/newbot" and follow the instructions provided by BotFather.', CF7TEL_TEXT_DOMAIN ); ?></p>
             <p><?php echo esc_html( 'BotFather will ask you to choose a name for your bot. This is the name that will be displayed in chats.', CF7TEL_TEXT_DOMAIN ); ?></p>
             <p><?php echo esc_html( 'After choosing a name, BotFather will ask you to choose a username for your bot. This username must be unique and end with "bot" (e.g., "@example_bot").', CF7TEL_TEXT_DOMAIN ); ?></p>
             <p><?php echo esc_html( 'Once you have provided a username, BotFather will generate a token for your bot.', CF7TEL_TEXT_DOMAIN ); ?></p>
 
-            <h4><?php echo esc_html( 'Copy the bot token:', CF7TEL_TEXT_DOMAIN ); ?></h4>
+            <h4><?php echo esc_html( '4. Copy the bot token:', CF7TEL_TEXT_DOMAIN ); ?></h4>
             <p><?php echo esc_html( 'BotFather will provide you with a token for your bot. This token is a long string of characters that serves as a unique identifier for your bot.', CF7TEL_TEXT_DOMAIN ); ?></p>
             <p><?php echo esc_html( "Copy the token and keep it secure. Do not share it with anyone else, as it provides access to your bot's functionality.", CF7TEL_TEXT_DOMAIN ); ?></p>
 
-            <h4><?php echo esc_html( 'Use the bot token in your telegram settings:', CF7TEL_TEXT_DOMAIN ); ?></h4>
+            <h4><?php echo esc_html( '5. Use the bot token in your telegram settings:', CF7TEL_TEXT_DOMAIN ); ?></h4>
             <p><?php echo esc_html( 'Add Bot Token in settings. After that you need to have chat in Subscriber list. To add chat in list follow below given notes', CF7TEL_TEXT_DOMAIN ); ?></p>
             <p><strong>To add bot:</strong> send the <code>/cf7tel_start</code> comand to your bot</p>
             <p><strong>Add group:</strong> <?php echo esc_html( 'add your bot to the group and send the', CF7TEL_TEXT_DOMAIN ); ?> <code>/cf7tel_start</code> comand to your group</p>
@@ -101,19 +101,21 @@ if(!class_exists('cf7tel_tel_functions')) {
         public function plugin_menu_cbf() { ?>	
             <div class="wrap">
                 <h1><?php echo __( 'Telegram notification settings', CF7TEL_TEXT_DOMAIN ); ?></h1>
-                <?php 
-                    $this->bot_status();
-                    $this->view_full_list();
-                    settings_errors(); 
-                ?>
-                <form method="post" action="admin.php?page=cf7tel_telegram" class="cf7tel-form">
-                    <?php settings_fields( 'cf7tel_settings_page' ); ?>
-                    <?php do_settings_sections( 'cf7tel_settings_page' ); ?> 
-                    <input type="hidden" name="cf7tel_settings_form_action" value="save" />
-                    <p><?php echo __( 'To activate telegram notifications approve at least one subscriber And go to <code>Contact forms -> Edit form -> Telegram tab</code>. Then configure given settings in "Telegram" tab for telegram notification.', CF7TEL_TEXT_DOMAIN ); ?></p>
-                    <?php submit_button(); ?>
-                    <div class="cf7tel-how-to-connect-tel"><?php $this->how_to_create_bot_token(); ?></div>
-                </form>
+                <div class="cf7tel-how-to-connect-tel">
+                    <?php 
+                        $this->bot_status();
+                        $this->view_full_list();
+                        settings_errors(); 
+                    ?>
+                    <form method="post" action="admin.php?page=cf7tel_telegram" class="cf7tel-form">
+                        <?php settings_fields( 'cf7tel_settings_page' ); ?>
+                        <?php do_settings_sections( 'cf7tel_settings_page' ); ?> 
+                        <input type="hidden" name="cf7tel_settings_form_action" value="save" />
+                        <p><?php echo __( 'To activate telegram notifications approve at least one subscriber And go to <code>Contact forms -> Edit form -> Telegram tab</code>. Then configure given settings in "Telegram" tab for telegram notification.', CF7TEL_TEXT_DOMAIN ); ?></p>
+                        <?php submit_button(); ?>
+                    </form>
+                </div>
+                <div class="cf7tel-how-to-connect-tel"><?php $this->how_to_create_bot_token(); ?></div>
             </div> 
             <?php
         }
