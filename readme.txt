@@ -46,8 +46,8 @@ To send telegram messages go Admin dashboard –> CF7 Telegram. After that go to
 == Screenshots ==
 1. Telegram Setting.
 2. Telegram Form Settings
-3. Telegram Message Preview
-4. Telegram Message Preview
+3. Telegram Message Preview Dark
+4. Telegram Message Preview Light
 
 == Changelog ==
  
