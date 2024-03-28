@@ -8,24 +8,24 @@ Tested up to: 6.4
 Stable tag: 1.0.0
 License: GPLv2 or later
 
-Connect Contact Form 7 to Telegram is a Telegram notification plugin for WordPress that makes it really simple to send your Contact Form 7 forms directly to your Telegram account.
+Connect Contact Form 7 to Telegram is a Telegram notification plugin for WordPress that makes it simple to send your Contact Form 7 forms directly to your Telegram account.
 
 == Description ==
 
-<strong>Connect Contact Form 7 to Telegram</strong> is a Telegram notification plugin for WordPress that makes it really simple to send your Contact Form 7 forms directly to your Telegram account.
+<strong>Connect Contact Form 7 to Telegram</strong> is a Telegram notification plugin for WordPress that makes it simple to send your Contact Form 7 forms directly to your Telegram account.
 
-This plugin helps your users to send their form data to your telegram account after the contact form submitted and you can recieve it anytime and anywhere.
+This plugin helps your users to send their form data to your telegram account after the contact form is submitted and you can receive it anytime and anywhere.
 
 To send messages to telegram you need to follow several simple steps to configure telegram accounts.
 
 ** Telegram account configuration steps **
 Create the Telegram Bot and save the Bot Token parameter on the settings page Contact Form 7 –> CF7 Telegram.
 
-Now you will able to add users or group to subscriber list. Subscribers list shows all chats which can receive telegram message.
+Now you will able to add users or groups to the subscriber list. Subscribers list shows all chats that can receive telegram messages.
 To add a user send the <code>/cf7tel_start</code> command to your bot.
 To add a group add your bot to the group and send the <code>/cf7tel_start</code> command to your group.
 
-Last step, To send Telegram message go to Contact Form 7 –> Edit contact form –> Telegram tab. Enable status and select chat where you want messages.
+Last step, To send a Telegram message go to Contact Form 7 –> Edit contact form –> Telegram tab. Enable status and select chat where you want messages.
 
 **Free Plugin Features**
 
