@@ -8,11 +8,11 @@ Tested up to: 6.4
 Stable tag: 1.0.0
 License: GPLv2 or later
 
-Connect Contact Form 7 to Telegram is a Telegram notification plugin for WordPress that makes it simple to send your Contact Form 7 forms directly to your Telegram account.
+Connect Contact Form 7 to Telegram is a plugin for WordPress that enables easy transfer of Contact Form 7 form data directly to your Telegram account through notifications.
 
 == Description ==
 
-<strong>Connect Contact Form 7 to Telegram</strong> is a Telegram notification plugin for WordPress that makes it simple to send your Contact Form 7 forms directly to your Telegram account.
+<strong>Connect Contact Form 7 to Telegram</strong> is a plugin for WordPress that enables easy transfer of Contact Form 7 form data directly to your Telegram account through notifications.
 
 This plugin helps your users to send their form data to your telegram account after the contact form is submitted and you can receive it anytime and anywhere.
 
@@ -29,7 +29,7 @@ Last step, To send a Telegram message go to Contact Form 7 –> Edit contact for
 
 **Free Plugin Features**
 
-🔹 Easy to set-up!
+🔹 Easy to set up!
 🔹 Sends messages to telegram.
 🔹 Customized message body with form fields.
 🔹 Get notified instantly!
@@ -38,10 +38,10 @@ Last step, To send a Telegram message go to Contact Form 7 –> Edit contact for
 
 == Installation ==
 
-Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page.
+Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from the Plugins page.
 
-After active plugin configure telegram account and whatsapp account configuration:
-To send telegram messages go Admin dashboard –> CF7 Telegram. After that go to Contact forms –> Edit Form –> Telegram(tab)
+After active the plugin configure the Telegram account configuration:
+To send telegram messages go to Admin dashboard –> CF7 Telegram. After that go to Contact forms –> Edit Form –> Telegram(tab)
 
 == Screenshots ==
 1. Telegram Setting.
