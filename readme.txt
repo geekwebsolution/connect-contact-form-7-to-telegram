@@ -40,7 +40,7 @@ Last step, To send a Telegram message go to Contact Form 7 –> Edit contact for
 
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from the Plugins page.
 
-After active the plugin configure the telegram account and Whatsapp account configuration:
+After active the plugin configure the Telegram account configuration:
 To send telegram messages go to Admin dashboard –> CF7 Telegram. After that go to Contact forms –> Edit Form –> Telegram(tab)
 
 == Screenshots ==
