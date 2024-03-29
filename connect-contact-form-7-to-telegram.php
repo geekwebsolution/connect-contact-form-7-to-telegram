@@ -59,5 +59,5 @@ function cf7tel_add_plugin_settings_link($links)
 
 
 /** Telegram send message files */
-require_once(CF7TEL_PLUGIN_DIR_PATH . '/telegram/class-tel-functions.php');
-require_once(CF7TEL_PLUGIN_DIR_PATH . '/telegram/class-tel-admin.php');
+require_once(CF7TEL_PLUGIN_DIR_PATH . '/includes/class-tel-functions.php');
+require_once(CF7TEL_PLUGIN_DIR_PATH . '/admin/class-tel-admin.php');

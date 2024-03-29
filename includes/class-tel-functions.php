@@ -173,8 +173,8 @@ if(!class_exists('cf7tel_tel_functions')) {
             );
             
             if($hook == 'toplevel_page_wpcf7' || $hook == 'contact_page_wpcf7-new' || $hook == 'contact_page_cf7tel_telegram') {
-                wp_enqueue_style( 'cf7teltelegram-admin-styles', CF7TEL_PLUGIN_URL . '/telegram/assets/css/admin.css', array(), CF7TEL_PLUGIN_VERSION );
-                wp_enqueue_script( 'cf7teltelegram-admin', CF7TEL_PLUGIN_URL . '/telegram/assets/js/admin.js', array('jquery'), CF7TEL_PLUGIN_VERSION );
+                wp_enqueue_style( 'cf7teltelegram-admin-styles', CF7TEL_PLUGIN_URL . '/assets/css/admin.css', array(), CF7TEL_PLUGIN_VERSION );
+                wp_enqueue_script( 'cf7teltelegram-admin', CF7TEL_PLUGIN_URL . '/assets/js/admin.js', array('jquery'), CF7TEL_PLUGIN_VERSION );
                 wp_localize_script( 'cf7teltelegram-admin', 'wpData', $localize_params );
             }
         }
