@@ -4,7 +4,7 @@ Donate link: https://paypal.me/rvadhel
 Tags: telegram, contact form 7, click to chat, telegram chat, telegram support
 Requires PHP: 7.4
 Requires at least: 6.3
-Tested up to: 6.4
+Tested up to: 6.5
 Stable tag: 1.0.0
 License: GPLv2 or later
 
