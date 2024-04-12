@@ -43,7 +43,7 @@ function cf7tel_install_contact_form_7_admin_notice() { ?>
 }
 
 $plugin = plugin_basename(__FILE__);
-add_filter("plugin_action_links_$plugin", 'cf7tel_add_plugin_settings_link');
+add_filter("plugin_action_links_connect-contact-form-7-to-telegram/connect-contact-form-7-to-telegram.php", 'cf7tel_add_plugin_settings_link');
 function cf7tel_add_plugin_settings_link($links)
 {
 	if ( is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) {
