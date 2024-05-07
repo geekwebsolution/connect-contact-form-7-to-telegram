@@ -12,7 +12,7 @@ if (!class_exists('cf7tel_connect_tel_settings')) {
         public function connect_tel_add_tab($panels)
         {
             $panels['connect-telegram'] = array(
-                'title'     => __('Telegram', CF7TEL_TEXT_DOMAIN),
+                'title'     => __('Telegram', 'connect-contact-form-7-to-telegram'),
                 'callback'  => array( $this, 'connect_tel_settings_callback' ),
             );
             return $panels;
@@ -33,28 +33,28 @@ if (!class_exists('cf7tel_connect_tel_settings')) {
             $cf7_active_chats    = (isset($option['cf7tel_form_chats']) && !empty($option['cf7tel_form_chats'])) ? explode(",", $option['cf7tel_form_chats']) : array();
             $cf7tel_status       = (isset($option['cf7tel_status']) && $option['cf7tel_status'] == 'on' && !empty($approved_chats) && !empty($cf7_active_chats)) ? 'checked' : ''; ?>
             
-            <h2><?php esc_html_e('Telegram', CF7TEL_TEXT_DOMAIN); ?></h2>
+            <h2><?php esc_html_e('Telegram', 'connect-contact-form-7-to-telegram'); ?></h2>
             <legend>
-                <?php esc_html_e('In the message body, you can use these tags:', CF7TEL_TEXT_DOMAIN); ?><br>
+                <?php esc_html_e('In the message body, you can use these tags:', 'connect-contact-form-7-to-telegram'); ?><br>
                 <?php $post->suggest_mail_tags(); ?>
             </legend>
             <div class="cf7tel-sec">
                 <table class="form-table">
                     <tr>
                         <th scope="row">
-                            <label><?php esc_html_e('Status', CF7TEL_TEXT_DOMAIN); ?></label>
+                            <label><?php esc_html_e('Status', 'connect-contact-form-7-to-telegram'); ?></label>
                         </th>
                         <td>
                             <label class="cf7tel-switch">
                                 <input type="checkbox" class="cf7tel-checkbox" name="cf7tel-tel-status" value="on" <?php echo esc_attr($cf7tel_status); ?>>
                                 <span class="cf7tel-slider cf7tel-round"></span>
                             </label>
-                            <p><?php esc_html_e('Enable to connect telegram for this contact form.', CF7TEL_TEXT_DOMAIN); ?></p>
+                            <p><?php esc_html_e('Enable to connect telegram for this contact form.', 'connect-contact-form-7-to-telegram'); ?></p>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">
-                            <label><?php esc_html_e('Select Chats', CF7TEL_TEXT_DOMAIN); ?></label>
+                            <label><?php esc_html_e('Select Chats', 'connect-contact-form-7-to-telegram'); ?></label>
                         </th>
                         <td>
                             <?php
@@ -70,11 +70,11 @@ if (!class_exists('cf7tel_connect_tel_settings')) {
                                     <input type="checkbox" id="<?php echo esc_attr( $chat['id'] ); ?>" name="cf7tel_form_chats[]" value="<?php echo esc_attr( $chat['id'] ); ?>" <?php echo esc_attr( in_array( $chat['id'], $cf7_active_chats ) ? 'checked' : '' ); ?>>
                                     <label for="<?php echo esc_attr( $chat['id'] ); ?>"><?php echo esc_html( implode( " ", array( empty( $str = trim( $chat['id'] > 0 ? $fullname : $chat['title'] ) ) ? "[{$chat['id']}]" : $str, empty( $chat['username'] ) ? '' : '@'. $chat['username'], isset( $chat['date'] ) ? wp_date( 'j F Y H:i:s', $chat['date'] ) : '' ) ) ); ?></label><br>
                                     
-                                    <p><?php esc_html_e('Select any chats to send telegram messages.', CF7TEL_TEXT_DOMAIN); ?></p>
+                                    <p><?php esc_html_e('Select any chats to send telegram messages.', 'connect-contact-form-7-to-telegram'); ?></p>
                                     <?php
                                 }
                             }else{ ?>
-                                    <p><?php echo esc_html('Please approve at least one chat in Subscribers list. To check subscriber list go to ', CF7TEL_TEXT_DOMAIN); ?><a href="<?php echo esc_url( admin_url('admin.php?page=cf7tel_telegram') ) ?>" title="<?php esc_attr_e( 'CF7 Telegram Settings', CF7TEL_TEXT_DOMAIN ); ?>"><?php esc_html_e( 'CF7 Telegram Settings', CF7TEL_TEXT_DOMAIN ); ?></a>.</p>
+                                    <p><?php echo esc_html('Please approve at least one chat in Subscribers list. To check subscriber list go to ', 'connect-contact-form-7-to-telegram'); ?><a href="<?php echo esc_url( admin_url('admin.php?page=cf7tel_telegram') ) ?>" title="<?php esc_attr_e( 'CF7 Telegram Settings', 'connect-contact-form-7-to-telegram' ); ?>"><?php esc_html_e( 'CF7 Telegram Settings', 'connect-contact-form-7-to-telegram' ); ?></a>.</p>
                                 <?php
                             }
                             ?>
@@ -83,11 +83,11 @@ if (!class_exists('cf7tel_connect_tel_settings')) {
                     </tr>
                     <tr>
                         <th scope="row">
-                            <label><?php esc_html_e('Message', CF7TEL_TEXT_DOMAIN); ?></label>
+                            <label><?php esc_html_e('Message', 'connect-contact-form-7-to-telegram'); ?></label>
                         </th>
                         <td>
                             <textarea id="cf7tel_message_body" name="cf7tel-tel-message-body" cols="100" rows="18" class="large-text code"><?php echo esc_html(wp_unslash($cf7tel_message_body)); ?></textarea>
-                            <p><?php esc_html_e('Note:', CF7TEL_TEXT_DOMAIN); ?> <i><?php esc_html_e('You can customize above telegram message body.', CF7TEL_TEXT_DOMAIN); ?></i></p>
+                            <p><?php esc_html_e('Note:', 'connect-contact-form-7-to-telegram'); ?> <i><?php esc_html_e('You can customize above telegram message body.', 'connect-contact-form-7-to-telegram'); ?></i></p>
                         </td>
                     </tr>
                     <div class="cf7tel-hidden-input">

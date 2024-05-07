@@ -35,7 +35,7 @@ function cf7tel_install_contact_form_7_admin_notice() { ?>
 	<div class="error">
 		<p>
 			<?php
-			echo esc_html__( sprintf( '%s is enabled but not effective. It requires Contact Form 7 in order to work.', 'Connect Contact Form 7 to Telegram' ), CF7TEL_TEXT_DOMAIN );
+			echo sprintf( esc_html__('%s is enabled but not effective. It requires Contact Form 7 in order to work.','connect-contact-form-7-to-telegram'), 'Connect Contact Form 7 to Telegram' );
 			?>
 		</p>
 	</div>
@@ -47,10 +47,10 @@ add_filter("plugin_action_links_connect-contact-form-7-to-telegram/connect-conta
 function cf7tel_add_plugin_settings_link($links)
 {
 	if ( is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) {
-		$support_link = '<a href="https://geekcodelab.com/contact/" target="_blank" >' . __('Support', CF7TEL_TEXT_DOMAIN) . '</a>';
+		$support_link = '<a href="https://geekcodelab.com/contact/" target="_blank" >' . __('Support', 'connect-contact-form-7-to-telegram') . '</a>';
 		array_unshift($links, $support_link);
 
-		$setting_link = '<a href="' . admin_url('admin.php?page=cf7tel_telegram') . '">' . __('Settings', CF7TEL_TEXT_DOMAIN) . '</a>';
+		$setting_link = '<a href="' . admin_url('admin.php?page=cf7tel_telegram') . '">' . __('Settings', 'connect-contact-form-7-to-telegram') . '</a>';
 		array_unshift($links, $setting_link);
 	}
 	return $links;
