@@ -32,15 +32,15 @@
     border-radius: 8px;
 }
 
-.cf7tel_notice[status="pending"] {
+.cf7tel_notice[data-status="pending"] {
     border-left-color: #f90;
 }
 
-.cf7tel_notice[status="active"] {
+.cf7tel_notice[data-status="active"] {
     border-left-color: #01a934;
 }
 
-.cf7tel_notice[status="deleted"] {
+.cf7tel_notice[data-status="deleted"] {
     opacity: .4;
 }
 
@@ -74,15 +74,15 @@
     color: #F00;
 }
 
-.cf7tel_notice[status="pending"] .buttons .pause {
+.cf7tel_notice[data-status="pending"] .buttons .pause {
     display: none;
 }
 
-.cf7tel_notice[status="active"] .buttons .approve {
+.cf7tel_notice[data-status="active"] .buttons .approve {
     display: none;
 }
 
-.cf7tel_notice[status="deleted"] .buttons {
+.cf7tel_notice[data-status="deleted"] .buttons {
     display: none;
 }
 

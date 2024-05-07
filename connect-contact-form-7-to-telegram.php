@@ -35,7 +35,7 @@ function cf7tel_install_contact_form_7_admin_notice() { ?>
 	<div class="error">
 		<p>
 			<?php
-			echo sprintf( esc_html__('%s is enabled but not effective. It requires Contact Form 7 in order to work.','connect-contact-form-7-to-telegram'), 'Connect Contact Form 7 to Telegram' );
+			printf( '%s is enabled but not effective. It requires Contact Form 7 in order to work.', 'Connect Contact Form 7 to Telegram' );
 			?>
 		</p>
 	</div>

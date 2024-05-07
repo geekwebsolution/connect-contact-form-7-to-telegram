@@ -25,7 +25,7 @@ function init(){
 				var result = JSON.parse( response );
 				if ( true == result.result ) {
 					var panel = jQuery( '.cf7tel_notice[data-chat="' + result.chat + '"]' );
-					panel.attr( 'status', result.new_status );
+					panel.attr( 'data-status', result.new_status );
 				}
 			});
 		} );
