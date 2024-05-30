@@ -2,13 +2,13 @@
  * After document load initialize events
  */
 jQuery( document ).ready( function(){
-	init();
+	cf7tel_init();
 });
 
 /**
  * Function to approve / delete subscriber from list
  */
-function init(){
+function cf7tel_init(){
 	jQuery( '.cf7tel_notice' ).each( function( index, notice ){ 
 		var panel = jQuery( notice );
 		panel.on( 'click', '.buttons a', { chat : panel.data( 'chat' ) }, function( e ){
