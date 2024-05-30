@@ -5,7 +5,7 @@ Tags: telegram, contact form 7, click to chat, telegram chat, telegram support
 Requires PHP: 7.4
 Requires at least: 6.3
 Tested up to: 6.5
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 
 Connect Contact Form 7 to Telegram is a plugin for WordPress that enables easy transfer of Contact Form 7 form data directly to your Telegram account through notifications.
@@ -16,14 +16,27 @@ Connect Contact Form 7 to Telegram is a plugin for WordPress that enables easy t
 
 This plugin helps your users to send their form data to your telegram account after the contact form is submitted and you can receive it anytime and anywhere.
 
-To send messages to telegram you need to follow several simple steps to configure telegram accounts.
+** Important Note: Using This Plugin with Telegram **
+
+This plugin uses a third-party service called Telegram to send notifications or data (depending on its functionality). When you use the plugin to submit form data, that data sent to Telegram.
+
+Here's a breakdown:
+
+* Third-Party Service: Telegram <a href="https://telegram.org/">https://telegram.org/</a> is a messaging platform.
+* Data Sharing: This plugin relies on Telegram to deliver form data to telegram. 
+
+Before using this plugin, it's important to:
+
+* Understand Telegram's privacy policy <a href="https://telegram.org/privacy/">https://telegram.org/privacy/</a> to see how your data might be handled.
 
 ** Telegram account configuration steps **
-Create the Telegram Bot and save the Bot Token parameter on the settings page Contact Form 7 –> CF7 Telegram.
+To send messages to telegram you need to follow several simple steps to configure telegram accounts.
 
-Now you will able to add users or groups to the subscriber list. Subscribers list shows all chats that can receive telegram messages.
-To add a user send the <code>/cf7tel_start</code> command to your bot.
-To add a group add your bot to the group and send the <code>/cf7tel_start</code> command to your group.
+- Create the Telegram Bot and save the Bot Token parameter on the settings page Contact Form 7 –> CF7 Telegram.
+- Now you will able to add users or groups to the subscriber list. Subscribers list shows all chats that can receive telegram messages.
+
+  To add a user send the <code>/cf7tel_start</code> command to your bot.
+  To add a group add your bot to the group and send the <code>/cf7tel_start</code> command to your group.
 
 Last step, To send a Telegram message go to Contact Form 7 –> Edit contact form –> Telegram tab. Enable status and select chat where you want messages.
 
@@ -50,6 +63,9 @@ To send telegram messages go to Admin dashboard –> CF7 Telegram. After that go
 4. Telegram Message Preview Light
 
 == Changelog ==
+
+= 1.0.1 =
+ Fixed bugs
  
 = 1.0.0 =
  Initial release
