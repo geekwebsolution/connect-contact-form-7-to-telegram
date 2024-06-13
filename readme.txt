@@ -6,6 +6,7 @@ Requires PHP: 7.4
 Requires at least: 6.3
 Tested up to: 6.5
 Stable tag: 1.0.1
+Requires Plugins: contact-form-7
 License: GPLv2 or later
 
 Connect Contact Form 7 to Telegram is a plugin for WordPress that enables easy transfer of Contact Form 7 form data directly to your Telegram account through notifications.
@@ -63,6 +64,8 @@ To send telegram messages go to Admin dashboard –> CF7 Telegram. After that go
 4. Telegram Message Preview Light
 
 == Changelog ==
+= 1.0.2 =
+ Fixed bugs
 
 = 1.0.1 =
  Fixed bugs

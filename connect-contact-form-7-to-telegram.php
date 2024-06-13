@@ -3,44 +3,22 @@
 Plugin Name: Connect Contact Form 7 to Telegram
 Description: Send a message directly to your WhatsApp account through Contact Form 7 forms.
 Author: Geek Code Lab
-Version: 1.0.1
+Version: 1.0.2
 Author URI: https://geekcodelab.com/
 Text Domain : connect-contact-form-7-to-telegram
+Requires Plugins: contact-form-7
 License: GPLv2 or later
 */
 
 if (!defined('ABSPATH')) exit;
 
-define('CF7TEL_PLUGIN_VERSION', '1.0.1');
-define('CF7TEL_TEXT_DOMAIN', 'connect-contact-form-7-to-telegram');
+define('CF7TEL_PLUGIN_VERSION', '1.0.2');
 
 if (!defined('CF7TEL_PLUGIN_DIR_PATH'))
 	define('CF7TEL_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__));
 
 if (!defined('CF7TEL_PLUGIN_URL'))
 	define('CF7TEL_PLUGIN_URL', plugins_url() . '/' . basename(dirname(__FILE__)));
-
-/**
- * Admin notice when Contact form 7 is not active
- */
-add_action( 'admin_init', 'cf7tel_plugin_load' );
-function cf7tel_plugin_load(){
-	if ( ! ( is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) ) {
-		add_action( 'admin_notices', 'cf7tel_install_contact_form_7_admin_notice' );
-		return;
-	}
-}
-
-function cf7tel_install_contact_form_7_admin_notice() { ?>
-	<div class="error">
-		<p>
-			<?php
-			printf( '%s is enabled but not effective. It requires Contact Form 7 in order to work.', 'Connect Contact Form 7 to Telegram' );
-			?>
-		</p>
-	</div>
-	<?php
-}
 
 $plugin = plugin_basename(__FILE__);
 add_filter("plugin_action_links_connect-contact-form-7-to-telegram/connect-contact-form-7-to-telegram.php", 'cf7tel_add_plugin_settings_link');
