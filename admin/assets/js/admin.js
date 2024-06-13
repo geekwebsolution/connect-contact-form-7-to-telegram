@@ -22,10 +22,9 @@ function cf7tel_init(){
 			}
 			
 			jQuery.post( wpData.ajax, postdata, function( response ) {
-				var result = JSON.parse( response );
-				if ( true == result.result ) {
-					var panel = jQuery( '.cf7tel_notice[data-chat="' + result.chat + '"]' );
-					panel.attr( 'data-status', result.new_status );
+				if ( true == response.result ) {
+					var panel = jQuery( '.cf7tel_notice[data-chat="' + response.chat + '"]' );
+					panel.attr( 'data-status', response.new_status );
 				}
 			});
 		} );

@@ -278,7 +278,7 @@ if(!class_exists('cf7tel_tel_functions')) {
             if ( empty( $list) ) return array();
             
             foreach( $list as $id => $chat ) :
-                _e(wp_kses_post(vsprintf( $this->cf7tel_get_template( 'f_item' ), $this->cf7tel_get_listitem_data( $chat, 'active' ))));
+                echo wp_kses_post(vsprintf( $this->cf7tel_get_template( 'f_item' ), $this->cf7tel_get_listitem_data( $chat, 'active' )));
             endforeach;
     
             return true;
@@ -289,7 +289,7 @@ if(!class_exists('cf7tel_tel_functions')) {
             if ( empty( $data ) ) return false;
             
             foreach( $data as $id => $item ) :
-                _e(wp_kses_post(vsprintf( $this->cf7tel_get_template( 'f_item' ), $this->cf7tel_get_listitem_data( $item ) )));
+                echo wp_kses_post(vsprintf( $this->cf7tel_get_template( 'f_item' ), $this->cf7tel_get_listitem_data( $item ) ));
             endforeach;
             
             return true;
@@ -563,7 +563,7 @@ if(!class_exists('cf7tel_tel_functions')) {
             if ( ! method_exists( $this, $action ) ) wp_die( wp_json_encode( new \WP_Error( 'wrong_action', __('There is no correct action in request','connect-contact-form-7-to-telegram'), array( 'status' => 400 ) ) ) );
             
             $new_status = '';
-            _e(wp_json_encode( array( 'result' => $this->$action( $chat_id, $new_status ), 'chat' => $chat_id, 'new_status' => $new_status ) ));
+            wp_send_json( array( 'result' => $this->$action( $chat_id, $new_status ), 'chat' => $chat_id, 'new_status' => $new_status ) );
             wp_die();
         }
 
