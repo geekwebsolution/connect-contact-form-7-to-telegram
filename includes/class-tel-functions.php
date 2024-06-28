@@ -67,7 +67,7 @@ if(!class_exists('cf7tel_tel_functions')) {
         }
 
         function cf7tel_create_bot_token() { ?>
-            <h3><?php esc_html_e( 'How to connect telegram with contact form', 'connect-contact-form-7-to-telegram' ); ?></h3>
+            <h3><?php esc_html_e( 'How to connect telegram with contact form', 'connect-contact-form-7-to-telegram' ); ?> [<a href="https://www.youtube.com/watch?v=eNPxA2PyxE8" target="_blank" title="Watch the video"><?php esc_html_e('Watch the video','connect-contact-form-7-to-telegram'); ?></a>]</h3>
             <div class="cf7tel-steps">
                 <h4><?php esc_html_e( '1. Open Telegram and search for @BotFather:', 'connect-contact-form-7-to-telegram' ); ?></h4>
                 <p><?php esc_html_e( 'Open the Telegram app or go to the Telegram website. In the search bar, type "@BotFather" and select the official BotFather bot from the search results.', 'connect-contact-form-7-to-telegram' ); ?></p>
@@ -121,7 +121,7 @@ if(!class_exists('cf7tel_tel_functions')) {
                         <?php settings_fields( 'cf7tel_settings_page' ); ?>
                         <?php do_settings_sections( 'cf7tel_settings_page' ); ?> 
                         <input type="hidden" name="cf7tel_settings_form_action" value="save" />
-                        <p><?php esc_html_e( 'To activate telegram notifications approve at least one subscriber And go to <code>Contact forms -> Edit form -> Telegram tab</code>. Then configure given settings in "Telegram" tab for telegram notification.', 'connect-contact-form-7-to-telegram' ); ?></p>
+                        <p><?php echo wp_kses( 'To activate telegram notifications approve at least one subscriber And go to <code>Contact forms -> Edit form -> Telegram tab</code>. Then configure given settings in "Telegram" tab for telegram notification.', array('code' => array()) ); ?></p>
                         <?php submit_button(); ?>
                     </form>
                 </div>

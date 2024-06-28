@@ -5,7 +5,7 @@ Tags: telegram, contact form 7, click to chat, telegram chat, telegram support
 Requires PHP: 7.4
 Requires at least: 6.3
 Tested up to: 6.5
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 Requires Plugins: contact-form-7
 License: GPLv2 or later
 
@@ -17,18 +17,8 @@ Connect Contact Form 7 to Telegram is a plugin for WordPress that enables easy t
 
 This plugin helps your users to send their form data to your telegram account after the contact form is submitted and you can receive it anytime and anywhere.
 
-** Important Note: Using This Plugin with Telegram **
-
-This plugin uses a third-party service called Telegram to send notifications or data (depending on its functionality). When you use the plugin to submit form data, that data sent to Telegram.
-
-Here's a breakdown:
-
-* Third-Party Service: Telegram <a href="https://telegram.org/">https://telegram.org/</a> is a messaging platform.
-* Data Sharing: This plugin relies on Telegram to deliver form data to telegram. 
-
-Before using this plugin, it's important to:
-
-* Understand Telegram's privacy policy <a href="https://telegram.org/privacy/">https://telegram.org/privacy/</a> to see how your data might be handled.
+<h4>Contact Form 7 to Telegram Preview</h4>
+[youtube https://youtu.be/eNPxA2PyxE8]
 
 ** Telegram account configuration steps **
 To send messages to telegram you need to follow several simple steps to configure telegram accounts.
@@ -50,6 +40,19 @@ Last step, To send a Telegram message go to Contact Form 7 –> Edit contact for
 🔹 Support Web, Android, IOS
 🔹 All Browser supports. Chrome, Safari, Firefox, etc.
 
+** Important Note: Using This Plugin with Telegram **
+
+This plugin uses a third-party service called Telegram to send notifications or data (depending on its functionality). When you use the plugin to submit form data, that data sent to Telegram.
+
+Here's a breakdown:
+
+* Third-Party Service: Telegram <a href="https://telegram.org/">https://telegram.org/</a> is a messaging platform.
+* Data Sharing: This plugin relies on Telegram to deliver form data to telegram. 
+
+Before using this plugin, it's important to:
+
+* Understand Telegram's privacy policy <a href="https://telegram.org/privacy/">https://telegram.org/privacy/</a> to see how your data might be handled.
+
 == Installation ==
 
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from the Plugins page.
@@ -64,6 +67,9 @@ To send telegram messages go to Admin dashboard –> CF7 Telegram. After that go
 4. Telegram Message Preview Light
 
 == Changelog ==
+= 1.0.3 =
+ Added Video Documentation
+
 = 1.0.2 =
  Fixed bugs
 
