@@ -3,7 +3,7 @@
 Plugin Name: Connect Contact Form 7 to Telegram
 Description: Send a message directly to your WhatsApp account through Contact Form 7 forms.
 Author: Geek Code Lab
-Version: 1.0.2
+Version: 1.0.3
 Author URI: https://geekcodelab.com/
 Text Domain : connect-contact-form-7-to-telegram
 Requires Plugins: contact-form-7
@@ -12,7 +12,7 @@ License: GPLv2 or later
 
 if (!defined('ABSPATH')) exit;
 
-define('CF7TEL_PLUGIN_VERSION', '1.0.2');
+define('CF7TEL_PLUGIN_VERSION', '1.0.3');
 
 if (!defined('CF7TEL_PLUGIN_DIR_PATH'))
 	define('CF7TEL_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__));
