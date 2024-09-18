@@ -4,7 +4,7 @@
  * @author		The Theme Foundry
  */
 
-if ( ! class_exists( 'connect_cf7_to_social_apps_library_Styles' ) ) :
+if ( ! class_exists( 'connect_cf7_to_telegram_library_Styles' ) ) :
 /**
  * Singleton to collect and print CSS based on user input.
  *
@@ -12,14 +12,14 @@ if ( ! class_exists( 'connect_cf7_to_social_apps_library_Styles' ) ) :
  * of conflicting rules and sorts out what the final CSS should be. The primary function is `add()`. It allows the
  * caller to add a new rule to be generated in the CSS.
  */
-class connect_cf7_to_social_apps_library_Styles {
+class connect_cf7_to_telegram_library_Styles {
 
 	/**
-	 * The one instance of connect_cf7_to_social_apps_library_Styles.
+	 * The one instance of connect_cf7_to_telegram_library_Styles.
 	 *
 	 * @since 1.0.0.
 	 *
-	 * @var   connect_cf7_to_social_apps_library_Styles    The one instance for the singleton.
+	 * @var   connect_cf7_to_telegram_library_Styles    The one instance for the singleton.
 	 */
 	private static $instance;
 
@@ -52,11 +52,11 @@ class connect_cf7_to_social_apps_library_Styles {
 	private $tab = '';
 
 	/**
-	 * Instantiate or return the one connect_cf7_to_social_apps_library_Styles instance.
+	 * Instantiate or return the one connect_cf7_to_telegram_library_Styles instance.
 	 *
 	 * @since  1.0.0.
 	 *
-	 * @return connect_cf7_to_social_apps_library_Styles
+	 * @return connect_cf7_to_telegram_library_Styles
 	 */
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {
@@ -71,7 +71,7 @@ class connect_cf7_to_social_apps_library_Styles {
 	 *
 	 * @since  1.0.0.
 	 *
-	 * @return connect_cf7_to_social_apps_library_Styles
+	 * @return connect_cf7_to_telegram_library_Styles
 	 */
 	function __construct() {
 		// Set line ending and tab
@@ -86,7 +86,7 @@ class connect_cf7_to_social_apps_library_Styles {
 	 *
 	 * Accepts data to eventually be turned into CSS. Usage:
 	 *
-	 * connect_cf7_to_social_apps_library_Styles()->add( array(
+	 * connect_cf7_to_telegram_library_Styles()->add( array(
 	 *     'selectors'    => array( '.site-header-main' ),
 	 *     'declarations' => array(
 	 *         'background-color' => $header_background_color
@@ -235,7 +235,7 @@ class connect_cf7_to_social_apps_library_Styles {
 
 		/**
 		 * Note that when this output is prepared, it is not escaped, sanitized or otherwise altered. The sanitization
-		 * routines are implemented when the developer calls `connect_cf7_to_social_apps_library_Styles()->add`. Because every property value has
+		 * routines are implemented when the developer calls `connect_cf7_to_telegram_library_Styles()->add`. Because every property value has
 		 * special sanitization needs, it is handled at that point.
 		 */
 		foreach ( $declarations as $property => $value ) {
@@ -251,18 +251,18 @@ class connect_cf7_to_social_apps_library_Styles {
 }
 endif;
 
-if ( ! function_exists( 'connect_cf7_to_social_apps_library_styles' ) ) :
+if ( ! function_exists( 'connect_cf7_to_telegram_library_styles' ) ) :
 /**
- * Return the one connect_cf7_to_social_apps_library_Styles object.
+ * Return the one connect_cf7_to_telegram_library_Styles object.
  *
  * @since  1.0.0.
  *
- * @return connect_cf7_to_social_apps_library_Styles	The connect_cf7_to_social_apps_library_Styles object.
+ * @return connect_cf7_to_telegram_library_Styles	The connect_cf7_to_telegram_library_Styles object.
  */
-function connect_cf7_to_social_apps_library_styles() {
-	return connect_cf7_to_social_apps_library_Styles::instance();
+function connect_cf7_to_telegram_library_styles() {
+	return connect_cf7_to_telegram_library_Styles::instance();
 }
 endif;
 
-add_action( 'init', 'connect_cf7_to_social_apps_library_styles', 1 );
+add_action( 'init', 'connect_cf7_to_telegram_library_styles', 1 );
 ?>

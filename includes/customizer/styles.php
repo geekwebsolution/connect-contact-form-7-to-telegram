@@ -4,7 +4,7 @@
  *
  * @package Customizer Library WooCommerce Designer
  */
-if ( !function_exists( 'connect_cf7_to_social_apps_style_build' ) && class_exists( 'connect_cf7_to_social_apps_library_Styles' ) ) {
+if ( !function_exists( 'connect_cf7_to_telegram_style_build' ) && class_exists( 'connect_cf7_to_telegram_library_Styles' ) ) {
     /**
      * Process user options to generate CSS needed to implement the choices.
      *
@@ -12,7 +12,7 @@ if ( !function_exists( 'connect_cf7_to_social_apps_style_build' ) && class_exist
      *
      * @return void
      */
-    function connect_cf7_to_social_apps_style_build()
+    function connect_cf7_to_telegram_style_build()
     {
         $cf7tel_defaults = cf7tel_defaults();
         $cf7tel_options  = get_option('cf7tel_options');
@@ -41,7 +41,7 @@ if ( !function_exists( 'connect_cf7_to_social_apps_style_build' ) && class_exist
                 $chat_widget_icon_size = $cf7tel_options[$customize_form_key][$cwis_key];
 
                 if(isset($icon_size[$chat_widget_icon_size])) {
-                    connect_cf7_to_social_apps_library_Styles()->add( array(
+                    connect_cf7_to_telegram_library_Styles()->add( array(
                         'selectors'    => array( '.cf7tel-chat-widget-handle-btn-icon' ),
                         'declarations' => array( 'font-size' => intval($icon_size[$chat_widget_icon_size]) . 'px' ),
                     ) );
@@ -68,7 +68,7 @@ if ( !function_exists( 'connect_cf7_to_social_apps_style_build' ) && class_exist
                     $chat_widget_cta_text_size = $cf7tel_options[$customize_form_key][$cwcts_key];
 
                     if(isset($text_size[$chat_widget_cta_text_size])) {
-                        connect_cf7_to_social_apps_library_Styles()->add( array(
+                        connect_cf7_to_telegram_library_Styles()->add( array(
                             'selectors'    => array( '.cf7tel-chat-widget-handle-btn-text' ),
                             'declarations' => array( 'font-size' => intval($text_size[$chat_widget_cta_text_size]) . 'px' ),
                         ) );
@@ -85,7 +85,7 @@ if ( !function_exists( 'connect_cf7_to_social_apps_style_build' ) && class_exist
                 $cwfff_key = "chat_widget_form_font_family";
 
                 if(isset($cf7tel_options[$customize_form_key][$cwfff_key])) {
-                    connect_cf7_to_social_apps_library_Styles()->add( array(
+                    connect_cf7_to_telegram_library_Styles()->add( array(
                         'selectors'    => array( '.cf7tel-chat-widget-form' ),
                         'declarations' => array( '--cf7tel-primary-font' => $cf7tel_options[$customize_form_key][$cwfff_key] ),
                     ) );
@@ -118,7 +118,7 @@ if ( !function_exists( 'connect_cf7_to_social_apps_style_build' ) && class_exist
                         $chat_widget_cta_text_size = $cf7tel_options[$greetings_key][$sghs_key];
 
                         if(isset($text_size[$chat_widget_cta_text_size])) {
-                            connect_cf7_to_social_apps_library_Styles()->add( array(
+                            connect_cf7_to_telegram_library_Styles()->add( array(
                                 'selectors'    => array( '.cf7tel-chat-widget-greetings-simple-title' ),
                                 'declarations' => array( 'font-size' => intval($text_size[$chat_widget_cta_text_size]) . 'px' ),
                             ) );
@@ -140,7 +140,7 @@ if ( !function_exists( 'connect_cf7_to_social_apps_style_build' ) && class_exist
                         $chat_widget_cta_text_size = $cf7tel_options[$greetings_key][$sgms_key];
 
                         if(isset($text_size[$chat_widget_cta_text_size])) {
-                            connect_cf7_to_social_apps_library_Styles()->add( array(
+                            connect_cf7_to_telegram_library_Styles()->add( array(
                                 'selectors'    => array( '.cf7tel-chat-widget-greetings-simple-text' ),
                                 'declarations' => array( 'font-size' => intval($text_size[$chat_widget_cta_text_size]) . 'px' ),
                             ) );
@@ -153,7 +153,7 @@ if ( !function_exists( 'connect_cf7_to_social_apps_style_build' ) && class_exist
                     $sgs1ff_key = "simple_greetings_style_1_font_family";
 
                     if(isset($cf7tel_options[$greetings_key][$sgs1ff_key])) {
-                        connect_cf7_to_social_apps_library_Styles()->add( array(
+                        connect_cf7_to_telegram_library_Styles()->add( array(
                             'selectors'    => array( '.cf7tel-chat-widget-greetings' ),
                             'declarations' => array( '--cf7tel-primary-font' => $cf7tel_options[$greetings_key][$sgs1ff_key] ),
                         ) );
@@ -177,7 +177,7 @@ if ( !function_exists( 'connect_cf7_to_social_apps_style_build' ) && class_exist
                         $chat_widget_cta_text_size = $cf7tel_options[$greetings_key][$wgs1hsl_key];
 
                         if(isset($text_size[$chat_widget_cta_text_size])) {
-                            connect_cf7_to_social_apps_library_Styles()->add( array(
+                            connect_cf7_to_telegram_library_Styles()->add( array(
                                 'selectors'    => array( '.cf7tel-chat-widget-greetings-wave .cf7tel-chat-widget-greetings-wave-title' ),
                                 'declarations' => array( 'font-size' => intval($text_size[$chat_widget_cta_text_size]) . 'px' ),
                             ) );
@@ -199,7 +199,7 @@ if ( !function_exists( 'connect_cf7_to_social_apps_style_build' ) && class_exist
                         $chat_widget_cta_text_size = $cf7tel_options[$greetings_key][$wgs1msl_key];
 
                         if(isset($text_size[$chat_widget_cta_text_size])) {
-                            connect_cf7_to_social_apps_library_Styles()->add( array(
+                            connect_cf7_to_telegram_library_Styles()->add( array(
                                 'selectors'    => array( '.cf7tel-chat-widget-greetings-wave .cf7tel-chat-widget-greetings-wave-text' ),
                                 'declarations' => array( 'font-size' => intval($text_size[$chat_widget_cta_text_size]) . 'px' ),
                             ) );
@@ -213,7 +213,7 @@ if ( !function_exists( 'connect_cf7_to_social_apps_style_build' ) && class_exist
                     $wgs1ff_key = "wave_greetings_style_1_font_family";
 
                     if(isset($cf7tel_options[$greetings_key][$wgs1ff_key])) {
-                        connect_cf7_to_social_apps_library_Styles()->add( array(
+                        connect_cf7_to_telegram_library_Styles()->add( array(
                             'selectors'    => array( '.cf7tel-chat-widget-greetings' ),
                             'declarations' => array( '--cf7tel-primary-font' => $cf7tel_options[$greetings_key][$wgs1ff_key] ),
                         ) );
@@ -224,12 +224,12 @@ if ( !function_exists( 'connect_cf7_to_social_apps_style_build' ) && class_exist
     }
 
 }
-add_action( 'customizer_library_styles', 'connect_cf7_to_social_apps_style_build' );
+add_action( 'customizer_library_styles', 'connect_cf7_to_telegram_style_build' );
 if ( !function_exists( 'woocustomizer_customizer_library_styles' ) ) {
     /**
      * Generates the style tag and CSS needed for the theme options.
      *
-     * By using the "connect_cf7_to_social_apps_library_Styles" filter, different components can print CSS in the header.
+     * By using the "connect_cf7_to_telegram_library_Styles" filter, different components can print CSS in the header.
      * It is organized this way to ensure there is only one "style" tag.
      *
      * @since  1.0.0.
@@ -244,7 +244,7 @@ if ( !function_exists( 'woocustomizer_customizer_library_styles' ) ) {
         if(isset($chat_widget_status) && $chat_widget_status == "on") {
             do_action( 'customizer_library_styles' );
             // Echo the rules
-            $css = connect_cf7_to_social_apps_library_Styles()->build();
+            $css = connect_cf7_to_telegram_library_Styles()->build();
             
             if ( !empty($css) ) {
                 wp_register_style( 'cf7tel-customizer-custom-css', false, array('cf7tel_style') );

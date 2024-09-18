@@ -17,7 +17,7 @@ if (!class_exists('cf7tel_connect_tel_settings')) {
         {
             add_submenu_page(
                 'wpcf7',
-                __('Connect Contact Form 7 to Social App', 'connect-contact-form-7-to-telegram'),
+                __('Connect Contact Form 7 to Telegram', 'connect-contact-form-7-to-telegram'),
                 __('CF7 Telegram Widget', 'connect-contact-form-7-to-telegram'),
                 'manage_options',
                 'connect-cf7tel',
@@ -30,7 +30,7 @@ if (!class_exists('cf7tel_connect_tel_settings')) {
             ?>
             <div class="wrap">
                 <div class="cf7tel-main-wrap">
-                    <h1><?php esc_html_e('Connect Contact Form 7 to Social App', 'connect-contact-form-7-to-telegram'); ?></h1>
+                    <h1><?php esc_html_e('Connect Contact Form 7 to Telegram', 'connect-contact-form-7-to-telegram'); ?></h1>
                     <?php include_once('class-options.php'); ?>
                 </div>
             </div>

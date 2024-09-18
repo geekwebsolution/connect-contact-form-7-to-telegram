@@ -2,7 +2,7 @@
 /**
  * Customizer Library
  *
- * @package        connect_cf7_to_social_apps_style_library
+ * @package        connect_cf7_to_telegram_style_library
  * @author         Devin Price, The Theme Foundry
  * @license        GPL-2.0+
  * @version        1.3.0
@@ -13,8 +13,8 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-// Continue if the connect_cf7_to_social_apps_style_library isn't already in use.
-if ( ! class_exists( 'connect_cf7_to_social_apps_style_library' ) ) : // Helper functions to output the customizer controls.
+// Continue if the connect_cf7_to_telegram_style_library isn't already in use.
+if ( ! class_exists( 'connect_cf7_to_telegram_style_library' ) ) : // Helper functions to output the customizer controls.
 
 
 	// Helper functions to build the inline CSS.
@@ -24,14 +24,14 @@ if ( ! class_exists( 'connect_cf7_to_social_apps_style_library' ) ) : // Helper 
 	/**
 	 * Class wrapper with useful methods for interacting with the theme customizer.
 	 */
-	class connect_cf7_to_social_apps_style_library {
+	class connect_cf7_to_telegram_style_library {
 
 		/**
-		 * The one instance of connect_cf7_to_social_apps_style_library.
+		 * The one instance of connect_cf7_to_telegram_style_library.
 		 *
 		 * @since 1.0.0.
 		 *
-		 * @var   connect_cf7_to_social_apps_library_Styles    The one instance for the singleton.
+		 * @var   connect_cf7_to_telegram_library_Styles    The one instance for the singleton.
 		 */
 		private static $instance;
 
@@ -46,11 +46,11 @@ if ( ! class_exists( 'connect_cf7_to_social_apps_style_library' ) ) : // Helper 
 		public $options = array();
 
 		/**
-		 * Instantiate or return the one connect_cf7_to_social_apps_style_library instance.
+		 * Instantiate or return the one connect_cf7_to_telegram_style_library instance.
 		 *
 		 * @since  1.0.0.
 		 *
-		 * @return connect_cf7_to_social_apps_style_library
+		 * @return connect_cf7_to_telegram_style_library
 		 */
 		public static function instance() {
 			if ( is_null( self::$instance ) ) {
