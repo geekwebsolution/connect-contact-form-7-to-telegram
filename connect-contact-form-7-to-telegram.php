@@ -20,6 +20,14 @@ if (!defined('CF7TEL_PLUGIN_DIR_PATH'))
 if (!defined('CF7TEL_PLUGIN_URL'))
 	define('CF7TEL_PLUGIN_URL', plugins_url() . '/' . basename(dirname(__FILE__)));
 
+register_activation_hook(__FILE__, 'cf7tel_plugin_active_notice');
+function cf7tel_plugin_active_notice()
+{
+    if (is_plugin_active('connect-contact-form-7-to-telegram-pro/connect-contact-form-7-to-telegram-pro.php')) {
+        deactivate_plugins('connect-contact-form-7-to-telegram-pro/connect-contact-form-7-to-telegram-pro.php');
+    }
+}
+
 $plugin = plugin_basename(__FILE__);
 add_filter("plugin_action_links_connect-contact-form-7-to-telegram/connect-contact-form-7-to-telegram.php", 'cf7tel_add_plugin_settings_link');
 function cf7tel_add_plugin_settings_link($links)

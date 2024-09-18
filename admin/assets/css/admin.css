@@ -1012,6 +1012,10 @@
     color: #000000f2;
 }
 
+.cf7tel-form-table input[type=checkbox] {
+  margin-right: 8px;
+}
+
 /** Contact form telegram tab CSS start */
 #connect-telegram .cf7tel-switch {
     cursor: pointer;
