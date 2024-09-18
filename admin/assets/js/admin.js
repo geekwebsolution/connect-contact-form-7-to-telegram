@@ -36,16 +36,7 @@ jQuery(window).on('load', function () {
             return params.get('step') || '1'; // Default to step 1 if no step is found
         }
 
-        /** On Telegram Number change JS */
-        // jQuery('#cf7tel_wh_number').change(function() {
-        //     var dInput = jQuery(this).val();
-        //     if(dInput.length >= 7 && dInput != '') {
-        //         jQuery(this).removeClass('cf7tel-input-error');
-        //     }else{
-        //         jQuery(this).addClass('cf7tel-input-error');
-        //     }
-        // });
-
+        /** On Telegram change JS */
         jQuery('input[name="cf7tel_form_chats[]"]').change(function() {
             var $parent = jQuery(this).parents('.cf7tel-step');
             if($parent.find('input[type=checkbox]').length) {

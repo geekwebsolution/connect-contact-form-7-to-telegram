@@ -5,7 +5,7 @@
 function cf7tel_defaults() {
 	$cf7tel_defaults = array(
 		'telegram_info' => array(
-			'cf7tel_form_chats' => ''
+			'cf7tel_form_chats' => array()
 		),
 		'customize_form' => array(
 			'chat_widget_icon_size' => 'medium', 

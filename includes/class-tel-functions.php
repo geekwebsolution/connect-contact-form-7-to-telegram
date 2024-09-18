@@ -190,7 +190,7 @@ if(!class_exists('cf7tel_tel_functions')) {
                 wp_enqueue_media();
 
                 wp_enqueue_script('wp-color-picker');
-                wp_enqueue_script( 'cf7teltelegram-admin', CF7TEL_PLUGIN_URL . '/admin/assets/js/admin.js', array('jquery'), CF7TEL_PLUGIN_VERSION );
+                wp_enqueue_script( 'cf7teltelegram-admin', CF7TEL_PLUGIN_URL . '/admin/assets/js/admin.js', array('wp-color-picker','jquery'), CF7TEL_PLUGIN_VERSION );
                 wp_localize_script( 'cf7teltelegram-admin', 'cf7telObj', $localize_params );
             }
         }
