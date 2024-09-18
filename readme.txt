@@ -102,10 +102,15 @@ After active the plugin configure the Telegram account configuration:
 To send telegram messages go to Admin dashboard –> CF7 Telegram. After that go to Contact forms –> Edit Form –> Telegram(tab)
 
 == Screenshots ==
-1. Telegram Setting.
+1. Telegram Setting
 2. Telegram Form Settings
-3. Telegram Message Preview Dark
-4. Telegram Message Preview Light
+3. Chat Widget Preview
+4. WhatsApp Info
+5. Customize Form
+6. Greetings
+7. Triggers & Targeting
+8. Telegram Message Preview Dark
+9. Telegram Message Preview Light
 
 == Changelog ==
 = 1.0.4 =
