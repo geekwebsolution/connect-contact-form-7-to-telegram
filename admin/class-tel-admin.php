@@ -7,6 +7,34 @@ if (!class_exists('cf7tel_connect_tel_settings')) {
         {
             add_action( 'wpcf7_editor_panels', array( $this, 'cf7tel_add_tab' ));
             add_action( 'wpcf7_after_save', array( $this, 'cf7tel_save_tel_settings_call' ));
+            add_action('admin_menu', array($this, 'cf7tel_submenu'));
+        }
+
+        /**
+         * Telegram Chat Widget 
+         */
+        public function cf7tel_submenu()
+        {
+            add_submenu_page(
+                'wpcf7',
+                __('Connect Contact Form 7 to Social App', 'connect-contact-form-7-to-telegram'),
+                __('CF7 Telegram Widget', 'connect-contact-form-7-to-telegram'),
+                'manage_options',
+                'connect-cf7tel',
+                array($this, 'connect_cf7tel_callback')
+            );
+        }
+
+        public function connect_cf7tel_callback()
+        {
+            ?>
+            <div class="wrap">
+                <div class="cf7tel-main-wrap">
+                    <h1><?php esc_html_e('Connect Contact Form 7 to Social App', 'connect-contact-form-7-to-telegram'); ?></h1>
+                    <?php include_once('class-options.php'); ?>
+                </div>
+            </div>
+            <?php
         }
         
         public function cf7tel_add_tab($panels)
@@ -23,15 +51,16 @@ if (!class_exists('cf7tel_connect_tel_settings')) {
          */
         public function connect_tel_settings_callback($post)
         {
-            $cf7cw_functions = new cf7tel_tel_functions();
-            $approved_chats = $cf7cw_functions->cf7tel_get_chats();
+            $cf7tel_functions = new cf7tel_tel_functions();
+            $approved_chats = $cf7tel_functions->cf7tel_get_chats();
 
             $cf7tel_tel_option_nonce = wp_create_nonce('cf7tel_tel_option_nonce');
             $form_id = $post->id();
             $option = get_option('cf7tel_connect_tel_' . $form_id, $default = array());
             $cf7tel_message_body = (isset($option['cf7tel_message_body'])) ? htmlentities($option['cf7tel_message_body']) : cf7tel_connect_tel_settings::cf7tel_message_body();
             $cf7_active_chats    = (isset($option['cf7tel_form_chats']) && !empty($option['cf7tel_form_chats'])) ? explode(",", $option['cf7tel_form_chats']) : array();
-            $cf7tel_status       = (isset($option['cf7tel_status']) && $option['cf7tel_status'] == 'on' && !empty($approved_chats) && !empty($cf7_active_chats)) ? 'checked' : ''; ?>
+            $status              = isset($option['cf7tel_status']) ? $option['cf7tel_status'] : "on";
+            $cf7tel_status       = (isset($status) && $status == 'on' && !empty($approved_chats) && !empty($cf7_active_chats)) ? 'checked' : ''; ?>
             
             <h2><?php esc_html_e('Telegram', 'connect-contact-form-7-to-telegram'); ?></h2>
             <legend>

@@ -176,12 +176,22 @@ if(!class_exists('cf7tel_tel_functions')) {
                     'approved'	=> __( 'Successfully approved', 'connect-contact-form-7-to-telegram' ),
                     'refused'	=> __( 'Request refused', 'connect-contact-form-7-to-telegram' ),
                 ),
+                'cf7tel_page' => $hook,
+                'telinput_util' => CF7TEL_PLUGIN_URL . '/admin/assets/js/admin.js'
             );
             
-            if($hook == 'toplevel_page_wpcf7' || $hook == 'contact_page_wpcf7-new' || $hook == 'contact_page_cf7tel_telegram') {
+            if($hook == 'toplevel_page_wpcf7' || $hook == 'contact_page_wpcf7-new' || $hook == 'contact_page_cf7tel_telegram' || $hook == 'contact_page_connect-cf7tel') {
+                wp_enqueue_style('wp-color-picker');
+                wp_enqueue_style('cf7tel-grid', plugins_url('admin/assets/css/cf7tel-grid.min.css', __DIR__), array(), CF7TEL_PLUGIN_VERSION);
                 wp_enqueue_style( 'cf7teltelegram-admin-styles', CF7TEL_PLUGIN_URL . '/admin/assets/css/admin.css', array(), CF7TEL_PLUGIN_VERSION );
+
+                wp_enqueue_script('jquery');
+
+                wp_enqueue_media();
+
+                wp_enqueue_script('wp-color-picker');
                 wp_enqueue_script( 'cf7teltelegram-admin', CF7TEL_PLUGIN_URL . '/admin/assets/js/admin.js', array('jquery'), CF7TEL_PLUGIN_VERSION );
-                wp_localize_script( 'cf7teltelegram-admin', 'wpData', $localize_params );
+                wp_localize_script( 'cf7teltelegram-admin', 'cf7telObj', $localize_params );
             }
         }
 
@@ -195,6 +205,9 @@ if(!class_exists('cf7tel_tel_functions')) {
         /** Set bot token */
         private function cf7tel_set_bot_token( $token ){
             $this->bot_token = sanitize_text_field($token);
+            if(empty($token)) {
+                update_option( 'cf7tel_telegram_bot_username', '' );    
+            }
             update_option( 'cf7tel_telegram_tkn', $token, false );
             return $this;
         }
@@ -320,44 +333,61 @@ if(!class_exists('cf7tel_tel_functions')) {
             
             $cf7tel_tel_option = get_option( 'cf7tel_connect_tel_' . $form_id , $default = array() );
             $list = (isset($cf7tel_tel_option['cf7tel_form_chats']) && !empty($cf7tel_tel_option['cf7tel_form_chats'])) ? sanitize_text_field($cf7tel_tel_option['cf7tel_form_chats']) : "";
-            $status = (isset($cf7tel_tel_option['cf7tel_status']) && !empty($cf7tel_tel_option['cf7tel_status'])) ? sanitize_text_field($cf7tel_tel_option['cf7tel_status']) : "";
+            $status = (isset($cf7tel_tel_option['cf7tel_status']) && !empty($cf7tel_tel_option['cf7tel_status'])) ? sanitize_text_field($cf7tel_tel_option['cf7tel_status']) : "on";
             $chat_list = (isset($list) && !empty($list)) ? explode(",",sanitize_text_field($list)) : array();
 
-            if ( empty( $status ) || empty( $chat_list ) ) return;
+            // if ( empty( $status ) || empty( $chat_list ) ) return;
             if ( $abort ) return;
             if ( apply_filters( 'cf7tel_skip_tg', false, $cf, $instance ) ) return;
 
-            if(isset($cf7tel_tel_option['cf7tel_message_body']) && !empty($cf7tel_tel_option['cf7tel_message_body'])) {
-                $telegram_msg_body = html_entity_decode(esc_html(wp_unslash( $cf7tel_tel_option['cf7tel_message_body'] )));
-                $data = $instance->get_posted_data();
-        
-                $output = wpcf7_mail_replace_tags( @ $telegram_msg_body );
-                $mode = 'HTML';
+            $admin_option = cf7tel_options();
 
-                $output = str_replace( "[form-title]", $form_title , $output );
+            $chat_widget_status = (isset($admin_option['triggers-targeting']['triggers_activate_cf7_form_chat_widget'])) ? $admin_option['triggers-targeting']['triggers_activate_cf7_form_chat_widget'] : "";
+            $cf7tel_chat_list = (isset($admin_option['telegram_info']['cf7tel_form_chats']) && !empty($admin_option['telegram_info']['cf7tel_form_chats'])) ? $admin_option['telegram_info']['cf7tel_form_chats'] : array();
 
-                $output = wp_kses( $output, array(
-                    'a'	=> array( 'href' => true ),
-                    'b' => array(), 'strong' => array(), 'i' => array(), 'em' => array(), 'u' => array(), 'ins' => array(), 's' => array(), 'strike' => array(), 'del' => array(), 'code' => array(), 'pre' => array(),
-                ) );	
-                
-                if(isset($chat_list) && !empty($chat_list)) {
-                    
-                    foreach( $chat_list as $key => $chat_id ) :
-                        if( !array_key_exists( $chat_id, $active_chats ) )  continue;
-                        if ( ! is_numeric( $chat_id ) ) continue;			
-                        $msg_data = array(
-                            'chat_id'					=> $chat_id,
-                            'text'						=> $output,
-                            'parse_mode'				=> $mode,
-                            'disable_web_page_preview'	=> true
-                        );
-                        $this->cf7tel_api_request( 'sendMessage', apply_filters( 'cf7tel_sendMessage', $msg_data, $chat_id, $mode ) );
-                        do_action( 'cf7tel_message_sent', $msg_data, $instance );
-                    endforeach;
+            $chat_widget_cf7 = (isset($admin_option['customize_form']['chat_widget_contact_form_7']) && !empty($admin_option['customize_form']['chat_widget_contact_form_7'])) ? $admin_option['customize_form']['chat_widget_contact_form_7'] : "";
+
+            $cf7tel_message_body = (isset($cf7tel_tel_option['cf7tel_message_body']) && !empty($cf7tel_tel_option['cf7tel_message_body'])) ? $cf7tel_tel_option['cf7tel_message_body'] : cf7tel_tel_functions::cf7tel_message_body();
+
+            if( ($chat_widget_status == "on" && !empty($status) && !empty($cf7tel_chat_list) && !empty($chat_widget_cf7) && $form_id == $chat_widget_cf7) || (!empty($status) && !empty($chat_list)) ) {
+                if(!empty($status) && !empty($chat_list)) {
+                    $final_chat_list = $chat_list;
+                }elseif($chat_widget_status == "on" && !empty($status) && !empty($cf7tel_chat_list) && !empty($chat_widget_cf7) && $form_id == $chat_widget_cf7) {
+                    $final_chat_list = $cf7tel_chat_list;
                 }
-                
-                do_action( 'cf7tel_messages_sent', $list, $output, $mode, $instance );
+
+                if(isset($cf7tel_message_body) && !empty($cf7tel_message_body)) {
+                    $telegram_msg_body = html_entity_decode(esc_html(wp_unslash( $cf7tel_message_body )));
+                    $data = $instance->get_posted_data();
+            
+                    $output = wpcf7_mail_replace_tags( @ $telegram_msg_body );
+                    $mode = 'HTML';
+
+                    $output = str_replace( "[form-title]", $form_title , $output );
+
+                    $output = wp_kses( $output, array(
+                        'a'	=> array( 'href' => true ),
+                        'b' => array(), 'strong' => array(), 'i' => array(), 'em' => array(), 'u' => array(), 'ins' => array(), 's' => array(), 'strike' => array(), 'del' => array(), 'code' => array(), 'pre' => array(),
+                    ) );	
+                    
+                    if(isset($final_chat_list) && !empty($final_chat_list)) {
+                        
+                        foreach( $final_chat_list as $key => $chat_id ) :
+                            if( !array_key_exists( $chat_id, $active_chats ) )  continue;
+                            if ( ! is_numeric( $chat_id ) ) continue;			
+                            $msg_data = array(
+                                'chat_id'					=> $chat_id,
+                                'text'						=> $output,
+                                'parse_mode'				=> $mode,
+                                'disable_web_page_preview'	=> true
+                            );
+                            $this->cf7tel_api_request( 'sendMessage', apply_filters( 'cf7tel_sendMessage', $msg_data, $chat_id, $mode ) );
+                            do_action( 'cf7tel_message_sent', $msg_data, $instance );
+                        endforeach;
+                    }
+                    
+                    do_action( 'cf7tel_messages_sent', $final_chat_list, $output, $mode, $instance );
+                }
             }
             
         }
@@ -527,6 +557,15 @@ if(!class_exists('cf7tel_tel_functions')) {
                 return false;
             endif;
 
+            if(isset($response->ok)) {
+                if(isset($response->result)) {
+                    if(isset($response->result->username)) {
+                        $bot_username = sanitize_text_field($response->result->username);
+                        update_option('cf7tel_telegram_bot_username',$bot_username);
+                    }
+                }
+            }
+
             $http_code = intval( $response['response']['code'] );
             if ( $http_code >= 500 ) :
                 error_log( "[TELEGRAM] Server return status {$http_code}" ."\n" );
@@ -565,6 +604,11 @@ if(!class_exists('cf7tel_tel_functions')) {
             $new_status = '';
             wp_send_json( array( 'result' => $this->$action( $chat_id, $new_status ), 'chat' => $chat_id, 'new_status' => $new_status ) );
             wp_die();
+        }
+
+        static function cf7tel_message_body()
+        {
+            return '<b>Form Title</b>: [form-title] ' . "\n" . '<b>Email</b>: [your-email]' . "\n" . '<b>Subject</b>: [your-subject]' . "\n" . '<b>Message</b>:' . "\n" . '[your-message]' . "\n" . '--' . "\n" . 'This message was sent from a contact form on <b>[_site_title]</b> ([_site_url])';
         }
 
     }
