@@ -58,7 +58,7 @@ function cf7tel_defaults() {
 			'greeting_behavior_on_click_action' => 'load_the_selected_form'
 		),
 		'triggers-targeting' => array(
-			'triggers_activate_cf7_form_chat_widget' => 'on',
+			'triggers_activate_cf7_form_chat_widget' => '',
 			'triggers_time_delay' => '',
 			'triggers_show_form_after_second' => '',
 			'targeting_exclude_pages' => array(),

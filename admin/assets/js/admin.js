@@ -7,9 +7,9 @@ jQuery( document ).ready( function(){
 
 jQuery(window).on('load', function () {
 
-    var cf7tel_page = cf7telObj.cf7tel_page;
+    const cf7tel_page = cf7telObj.cf7tel_page;
 
-    if(typeof cf7tel_page !== "undefined" && cf7tel_page == "contact_page_connect-cf7tel") {
+    if (typeof cf7tel_page !== "undefined" && cf7cw_page.includes("connect-cf7tel")) {
 
         /**
          * Add color picker to fields

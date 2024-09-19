@@ -180,7 +180,7 @@ if(!class_exists('cf7tel_tel_functions')) {
                 'telinput_util' => CF7TEL_PLUGIN_URL . '/admin/assets/js/admin.js'
             );
             
-            if($hook == 'toplevel_page_wpcf7' || $hook == 'contact_page_wpcf7-new' || $hook == 'contact_page_cf7tel_telegram' || $hook == 'contact_page_connect-cf7tel') {
+            if($hook == 'toplevel_page_wpcf7' || $hook == 'contact_page_wpcf7-new' || $hook == 'contact_page_cf7tel_telegram' || strpos($hook, 'connect-cf7tel') !== false) {
                 wp_enqueue_style('wp-color-picker');
                 wp_enqueue_style('cf7tel-grid', plugins_url('admin/assets/css/cf7tel-grid.min.css', __DIR__), array(), CF7TEL_PLUGIN_VERSION);
                 wp_enqueue_style( 'cf7teltelegram-admin-styles', CF7TEL_PLUGIN_URL . '/admin/assets/css/admin.css', array(), CF7TEL_PLUGIN_VERSION );
