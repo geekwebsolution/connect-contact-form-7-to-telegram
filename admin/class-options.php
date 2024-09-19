@@ -80,7 +80,12 @@ if (isset($_POST['cf7tel_save_changes'])) {
                 }
             }
         }
-        wp_safe_redirect(admin_url('admin.php?page=connect-cf7tel#step=1'));
+        ?>
+        <script type="text/javascript">
+            window.location = "<?php echo admin_url('admin.php?page=connect-cf7tel#step=1'); ?>";
+            window.location.reload();
+        </script>
+        <?php
     }
 }
 
