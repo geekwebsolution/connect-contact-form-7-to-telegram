@@ -105,7 +105,7 @@ To send telegram messages go to Admin dashboard –> CF7 Telegram. After that go
 1. Telegram Setting
 2. Telegram Form Settings
 3. Chat Widget Preview
-4. WhatsApp Info
+4. Telegram Info
 5. Customize Form
 6. Greetings
 7. Triggers & Targeting
