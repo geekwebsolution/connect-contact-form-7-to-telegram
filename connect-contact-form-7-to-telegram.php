@@ -20,18 +20,24 @@ if (!defined('CF7TEL_PLUGIN_DIR_PATH'))
 if (!defined('CF7TEL_PLUGIN_URL'))
 	define('CF7TEL_PLUGIN_URL', plugins_url() . '/' . basename(dirname(__FILE__)));
 
-require_once(WQOECF_PLUGIN_DIR_PATH . 'admin/updater/updater.php');
+if (!defined("CF7TEL_PLUGIN_BASENAME"))
+define("CF7TEL_PLUGIN_BASENAME", plugin_basename(__FILE__));
+
+if (!defined("CF7TEL_PLUGIN_DIR"))
+	define("CF7TEL_PLUGIN_DIR", plugin_basename(__DIR__));
+
+require_once(CF7TEL_PLUGIN_DIR_PATH . 'admin/updater/updater.php');
 
 register_activation_hook(__FILE__, 'cf7tel_plugin_active_notice');
 function cf7tel_plugin_active_notice()
 {
-	wqoecf_updater_activate();
+	cf7tel_updater_activate();
     if (is_plugin_active('connect-contact-form-7-to-telegram-pro/connect-contact-form-7-to-telegram-pro.php')) {
         deactivate_plugins('connect-contact-form-7-to-telegram-pro/connect-contact-form-7-to-telegram-pro.php');
     }
 }
 
-add_action('upgrader_process_complete', 'wqoecf_updater_activate'); // remove  transient  on plugin  update
+add_action('upgrader_process_complete', 'cf7tel_updater_activate'); // remove  transient  on plugin  update
 
 
 $plugin = plugin_basename(__FILE__);
