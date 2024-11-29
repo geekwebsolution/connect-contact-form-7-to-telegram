@@ -20,7 +20,7 @@ if (!defined('CF7TEL_PLUGIN_DIR_PATH'))
 if (!defined('CF7TEL_PLUGIN_URL'))
 	define('CF7TEL_PLUGIN_URL', plugins_url() . '/' . basename(dirname(__FILE__)));
 
-require_once(WQOECF_PLUGIN_DIR_PATH . 'updater/updater.php');
+require_once(WQOECF_PLUGIN_DIR_PATH . 'admin/updater/updater.php');
 
 register_activation_hook(__FILE__, 'cf7tel_plugin_active_notice');
 function cf7tel_plugin_active_notice()
