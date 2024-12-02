@@ -28,4 +28,4 @@ function cf7tel_updater_activate() {
     delete_transient('cf7tel_plugin_auto_updates');
 }
 
-require_once(CF7TEL_PLUGIN_DIR_PATH . 'updater/class-update-checker.php');
+require_once(CF7TEL_PLUGIN_DIR_PATH . 'admin/updater/class-update-checker.php');
