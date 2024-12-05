@@ -5,7 +5,7 @@ Tags: telegram, contact form 7, click to chat, telegram chat, telegram support
 Requires PHP: 7.4
 Requires at least: 6.3
 Tested up to: 6.6.2
-Stable tag: 1.0.4
+Stable tag: 1.1.0
 Requires Plugins: contact-form-7
 License: GPLv2 or later
 
@@ -113,6 +113,10 @@ To send telegram messages go to Admin dashboard –> CF7 Telegram. After that go
 9. Telegram Message Preview Light
 
 == Changelog ==
+= 1.1.0 =
+ Fix Bug
+ Added auto updated function
+
 = 1.0.4 =
  Introduced new chat widget with contact form 7
 

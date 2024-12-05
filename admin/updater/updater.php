@@ -19,7 +19,6 @@ function cf7tel_updater_utility() {
     return $settings;
 }
 
-// register_activation_hook(__FILE__, 'cf7tel_updater_activate');
 function cf7tel_updater_activate() {
 
     // Refresh transients
